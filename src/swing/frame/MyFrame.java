@@ -1,5 +1,8 @@
 package swing.frame;
 
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+
 import javax.swing.JFrame;
 
 public class MyFrame extends JFrame {
@@ -10,6 +13,9 @@ public class MyFrame extends JFrame {
 		setLocation(1800, 300); 
 //		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// 레이아웃
+		setLayout(new BorderLayout());
 		setVisible(true);
 	}
 	
