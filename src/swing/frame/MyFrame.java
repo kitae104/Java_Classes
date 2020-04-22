@@ -16,6 +16,7 @@ public class MyFrame extends JFrame {
 		
 		// 레이아웃
 		setLayout(new BorderLayout());
+		
 		setVisible(true);
 	}
 	
