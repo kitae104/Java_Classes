@@ -10,8 +10,7 @@ public class MyFrame extends JFrame {
 	public MyFrame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300); 
-//		setLocationRelativeTo(this);
+		setLocation(1800, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃
