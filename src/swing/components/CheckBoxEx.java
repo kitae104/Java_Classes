@@ -2,26 +2,37 @@ package swing.components;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
+import javax.swing.JTextField;
 
-public class CheckBoxEx extends JFrame implements ItemListener {
+import swing.menu.MyEditor;
+
+public class CheckBoxEx extends JFrame implements ItemListener, ActionListener {
 
 	private JCheckBox chk1, chk2, chk3;
 	private JLabel lblSum;
 	private int sum = 0;
+	private JTextField tf;
+	private JButton btnOk;
+	private MyEditor myEditor;
 	
-	public CheckBoxEx(String title, int width, int height) {
+	public CheckBoxEx(String title, int width, int height, MyEditor myEditor) {
 		setTitle(title);
 		setSize(width, height);
 		setLocation(1800, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		
+		this.myEditor = myEditor;
 		
 		// 레이아웃
 		setLayout(new FlowLayout());
@@ -57,12 +68,16 @@ public class CheckBoxEx extends JFrame implements ItemListener {
 		add(rbMan);
 		add(rbWoman);
 		
+		tf = new JTextField(8);
+		btnOk = new JButton("OK");
+		btnOk.addActionListener(this);
+		
+		add(tf);
+		add(btnOk);
+		
 		setVisible(true);
 	}
 	
-	public static void main(String[] args) {
-		new CheckBoxEx("체크박스 연습", 250, 200);
-	}
 
 	@Override
 	public void itemStateChanged(ItemEvent e) {		
@@ -84,4 +99,19 @@ public class CheckBoxEx extends JFrame implements ItemListener {
 		lblSum.setText("현재 " + sum + " 원 입니다.");
 	}
 
+	public JLabel getLblSum() {
+		return lblSum;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object obj = e.getSource();
+		
+		if(obj == btnOk) {
+			tf.setText(myEditor.getBtnOk().getText());
+		}
+		
+	}
+
+	
 }
