@@ -5,14 +5,24 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 
@@ -29,6 +39,8 @@ public class MyEditor extends JFrame implements ActionListener {
 	
 	private JButton btnNew, btnOpen, btnSave, btnExit;
 	private JButton btnOk;
+	
+	private JTextArea ta;
 	
 	private final int EXIT_SUCCESS = 0;	// 상수 
 	
@@ -73,21 +85,33 @@ public class MyEditor extends JFrame implements ActionListener {
 	
 	private void makeBasePanel() {
 		panelBase = new JPanel();
+		panelBase.setLayout(new BorderLayout());
 		panelBase.setBackground(Color.YELLOW);
 		
+		/*
 		tf = new JTextField(20);
 		panelBase.add(tf);
 		
 		btnOk = new JButton("확인");
 		btnOk.addActionListener(this);
 		panelBase.add(btnOk);
+		*/
+		
+		ta = new JTextArea();
+		JScrollPane sp = new JScrollPane(ta, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		panelBase.add(sp);
 	}
 
 	private void makeToolBar() {
 		toolBar = new JToolBar("내 툴바");
 		
 		btnNew = new JButton(imgs[0]);
+		btnNew.addActionListener(this);
+		
 		btnOpen = new JButton(imgs[1]);
+		btnOpen.addActionListener(this);
 		
 		btnSave = new JButton(imgs[2]);
 		btnSave.addActionListener(this);
@@ -152,11 +176,64 @@ public class MyEditor extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == menuItemExit || obj == btnExit) {
-			System.exit(EXIT_SUCCESS);
+			
+			checkExit();
+			
 		} else if(obj == menuItemInfo) {
 			chkEx = new CheckBoxEx("체크박스 연습", 250, 200, this);			
 		} else if(obj == btnOk) {
-			tf.setText(chkEx.getLblSum().getText());
+			String msg = JOptionPane.showInputDialog("숫자1?");
+			int sum = Integer.parseInt(msg) + 10;
+			tf.setText(sum + "");
+		} else if(obj == btnNew) {
+			ta.setText("");
+		} else if (obj == btnOpen) {			
+			JFileChooser fc = new JFileChooser();
+			fc.showOpenDialog(null);
+			
+			File in = fc.getSelectedFile();
+			BufferedReader br = null;
+			String line = null;
+			
+			try {
+				br = new BufferedReader(new FileReader(in));
+				while((line = br.readLine()) != null) {
+					ta.append(line + "\n");
+				}
+			} catch (FileNotFoundException e1) {				
+				e1.printStackTrace();
+			} catch (IOException e1) {				
+				e1.printStackTrace();
+			} finally {
+				try {					
+					br.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
+			
+		} else if(obj == btnSave) {
+			JFileChooser fc = new JFileChooser();
+			fc.showSaveDialog(null);
+			
+			//JColorChooser cc = new JColorChooser();
+			//cc.showDialog(null, "color", Color.YELLOW);			
+			
+		}
+	}
+
+	/**********************************************
+	 * 
+	 * @date : 2020. 5. 20.
+	 * 설명 : JOption을 이용한 나가기 기능 구현   
+	 **********************************************
+	 */
+	private void checkExit() {
+		int result = JOptionPane.showConfirmDialog(null, "정말나갈까요?","나가기", 
+						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+		
+		if(result == JOptionPane.YES_OPTION) {
+			System.exit(EXIT_SUCCESS);
 		}
 	}
 
