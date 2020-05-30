@@ -63,13 +63,16 @@ public class JDBC_Test {
 			System.out.println("--------------------------------");
 			
 			System.out.println("OK!");
+			
+			conn.close();
+			
 		} catch (ClassNotFoundException e) {			
 			System.out.println("JDBC 드라이버 로드 에러");
 			e.printStackTrace();
 		} catch (SQLException e) {
 			System.err.println("DB 연결 오류 또는 쿼리 오류 입니다.");
 			e.printStackTrace();
-		}
+		} 
 		
 	}
 
