@@ -59,7 +59,8 @@ public class MyEditor extends JFrame implements ActionListener {
 	public MyEditor(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300);
+//		setLocation(1800, 300);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃
