@@ -6,9 +6,11 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.swing.ImageIcon;
@@ -25,6 +27,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import swing.components.CheckBoxEx;
 
@@ -187,16 +190,25 @@ public class MyEditor extends JFrame implements ActionListener {
 			tf.setText(sum + "");
 		} else if(obj == btnNew) {
 			ta.setText("");
-		} else if (obj == btnOpen) {			
+		} else if (obj == btnOpen || obj == menuItemOpen) {	
+			//FileNameExtensionFilter filter = new FileNameExtensionFilter(
+			//		"텍스트파일", 
+			//		"txt");			
 			JFileChooser fc = new JFileChooser();
+			//fc.setFileFilter(filter);
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
+			//fc.setAcceptAllFileFilterUsed(false);
+			
 			fc.showOpenDialog(null);
 			
 			File in = fc.getSelectedFile();
 			BufferedReader br = null;
 			String line = null;
-			
-			try {
-				br = new BufferedReader(new FileReader(in));
+		
+			try {				
+				br = new BufferedReader(new FileReader(in));				
 				while((line = br.readLine()) != null) {
 					ta.append(line + "\n");
 				}
@@ -212,12 +224,34 @@ public class MyEditor extends JFrame implements ActionListener {
 				}
 			}
 			
-		} else if(obj == btnSave) {
+		} else if(obj == btnSave || obj == menuItemOpen) {
 			JFileChooser fc = new JFileChooser();
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
+			
 			fc.showSaveDialog(null);
 			
-			//JColorChooser cc = new JColorChooser();
-			//cc.showDialog(null, "color", Color.YELLOW);			
+			File out = fc.getSelectedFile();
+			BufferedWriter bw = null;			
+		
+			try {				
+				bw = new BufferedWriter(new FileWriter(out));	
+				String str = ta.getText();
+				str = str.replace("\n", System.getProperty("line.separator"));
+				bw.write(str);
+				
+			} catch (FileNotFoundException e1) {				
+				e1.printStackTrace();
+			} catch (IOException e1) {				
+				e1.printStackTrace();
+			} finally {
+				try {					
+					bw.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}			
 			
 		}
 	}

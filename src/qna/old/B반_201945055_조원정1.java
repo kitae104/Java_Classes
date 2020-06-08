@@ -1,4 +1,4 @@
-package swing.qna;
+package qna.old;
 
 import java.awt.Color;
 import java.awt.Container;
