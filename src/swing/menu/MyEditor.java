@@ -173,6 +173,7 @@ public class MyEditor extends JFrame implements ActionListener {
 
 	public static void main(String[] args) {
 		new MyEditor("간단 메모장", 800, 500);
+		
 	}
 
 	@Override
