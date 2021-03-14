@@ -11,14 +11,14 @@ public class BorderLayoutFrame extends JFrame {
 	public BorderLayoutFrame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300); 
+		setLocation(200, 300); 
 //		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃
 		setLayout(new BorderLayout(10, 20));
 		
-		JButton b1 = new JButton("1111111");
+		JButton b1 = new JButton("1");
 		add(b1, BorderLayout.NORTH);
 		
 		JButton b2 = new JButton("2");
