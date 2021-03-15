@@ -26,7 +26,7 @@ public class B반_201945055_조원정1 extends JFrame {
 		
 		
 		//레이아웃
-		setLayout(null);
+		setLayout(null); 
 		JPanel p = new JPanel();
 		p.setLayout(null);
 		p.setBackground(Color.black);

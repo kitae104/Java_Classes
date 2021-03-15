@@ -19,12 +19,12 @@ public class B반_201945055_조원정2 extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		// 레이아웃
-		setLayout(null);
+		setLayout(null); 
 		
 		JPanel p = new JPanel();
 		p.setLayout(null);
 		p.setBackground(Color.black);
-		p.setBounds(0, 0, 346, 225);
+		p.setBounds(0, 0, 346, 225); 
 		
 
 		JPanel pa = new JPanel();
