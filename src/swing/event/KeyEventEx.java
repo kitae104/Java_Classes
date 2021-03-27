@@ -20,7 +20,7 @@ public class KeyEventEx extends JFrame implements KeyListener {
 	public KeyEventEx(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃
@@ -49,7 +49,7 @@ public class KeyEventEx extends JFrame implements KeyListener {
 		add(panelBase);
 		
 		setVisible(true);
-		panelBase.requestFocus();
+		panelBase.requestFocus();		// 마지막에 설정(포커스가 잡혀야 수행이 가능함.
 	}
 	
 	public static void main(String[] args) {
@@ -65,7 +65,7 @@ public class KeyEventEx extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		int keyCode = e.getKeyCode();
 		char keyChar = e.getKeyChar();
-		String keyStr = e.getKeyText(keyCode);
+		String keyStr = KeyEvent.getKeyText(keyCode);
 		lbl1.setText(keyCode+"");
 		lbl2.setText(keyChar+"");
 		lbl3.setText(keyStr);

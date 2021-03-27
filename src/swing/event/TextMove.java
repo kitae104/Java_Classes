@@ -6,13 +6,14 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class TextMove extends JFrame implements MouseListener, KeyListener {
+public class TextMove extends JFrame implements MouseListener, KeyListener, MouseMotionListener {
 
 	private JPanel panelBase;   
 	private JLabel lblText;
@@ -23,7 +24,7 @@ public class TextMove extends JFrame implements MouseListener, KeyListener {
 	public TextMove(String title, int width, int height) {		
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300);
+		setLocationRelativeTo(null);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃
@@ -40,6 +41,7 @@ public class TextMove extends JFrame implements MouseListener, KeyListener {
 		lblText = new JLabel("김기태");
 		lblText.setBounds(30, 30, 80, 30);
 		panelBase.add(lblText);
+		panelBase.addMouseMotionListener(this);
 		
 		add(panelBase);
 		setVisible(true);
@@ -118,6 +120,17 @@ public class TextMove extends JFrame implements MouseListener, KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent e) {
+		lblText.setLocation(e.getPoint());		
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
