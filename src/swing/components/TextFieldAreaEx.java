@@ -21,7 +21,7 @@ public class TextFieldAreaEx extends JFrame implements ActionListener {
 	public TextFieldAreaEx(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300);
+		setLocation(300, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃

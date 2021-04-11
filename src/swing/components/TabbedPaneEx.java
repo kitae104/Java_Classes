@@ -17,7 +17,7 @@ public class TabbedPaneEx extends JFrame {
 	public TabbedPaneEx(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300);
+		setLocation(300, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃
