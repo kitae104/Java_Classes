@@ -226,7 +226,7 @@ public class MyEditor extends JFrame implements ActionListener {
 				}
 			}
 			
-		} else if(obj == btnSave || obj == menuItemOpen) {
+		} else if(obj == btnSave || obj == menuItemSave) {
 			JFileChooser fc = new JFileChooser();
 			fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
 			fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
