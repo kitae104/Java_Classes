@@ -1,0 +1,357 @@
+{
+    // IntelliSense를 사용하여 가능한 특성에 대해 알아보세요.
+    // 기존 특성에 대한 설명을 보려면 가리킵니다.
+    // 자세한 내용을 보려면 https://go.microsoft.com/fwlink/?linkid=830387을(를) 방문하세요.
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch ClientEx",
+            "request": "launch",
+            "mainClass": "chat.ClientEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch ServerEx",
+            "request": "launch",
+            "mainClass": "chat.ServerEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch JDBC_Test",
+            "request": "launch",
+            "mainClass": "db.JDBC_Test",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "db.Test",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch Login",
+            "request": "launch",
+            "mainClass": "db.login.Login",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch FileCopy",
+            "request": "launch",
+            "mainClass": "file.FileCopy",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch FileEx",
+            "request": "launch",
+            "mainClass": "file.FileEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch FileInputOutputStreamEx",
+            "request": "launch",
+            "mainClass": "file.FileInputOutputStreamEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch FileInputStreamEx",
+            "request": "launch",
+            "mainClass": "file.FileInputStreamEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch FileWriteEx",
+            "request": "launch",
+            "mainClass": "file.FileWriteEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch GUI_Test",
+            "request": "launch",
+            "mainClass": "gui.GUI_Test",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MyClass",
+            "request": "launch",
+            "mainClass": "my_test.MyClass",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch URLConnectionWriter",
+            "request": "launch",
+            "mainClass": "network.URLConnectionWriter",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch URLRead",
+            "request": "launch",
+            "mainClass": "network.URLRead",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch OracleDriver",
+            "request": "launch",
+            "mainClass": "oracle.jdbc.OracleDriver",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch OracleSql",
+            "request": "launch",
+            "mainClass": "oracle.jdbc.driver.OracleSql",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch SQLStateMapping",
+            "request": "launch",
+            "mainClass": "oracle.jdbc.driver.SQLStateMapping",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch ProxyExport",
+            "request": "launch",
+            "mainClass": "oracle.jdbc.proxy.ProxyExport",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch CharacterSetFactory",
+            "request": "launch",
+            "mainClass": "oracle.sql.CharacterSetFactory",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch B반_201945055_조원정1",
+            "request": "launch",
+            "mainClass": "qna.old.B반_201945055_조원정1",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch B반_201945055_조원정2",
+            "request": "launch",
+            "mainClass": "qna.old.B반_201945055_조원정2",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch Crowler",
+            "request": "launch",
+            "mainClass": "qna.old.Crowler",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch Finance",
+            "request": "launch",
+            "mainClass": "qna.old.Finance",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch LayoutTest",
+            "request": "launch",
+            "mainClass": "qna.old.LayoutTest",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch Practice",
+            "request": "launch",
+            "mainClass": "qna.old.Practice",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch ComboBoxEx",
+            "request": "launch",
+            "mainClass": "swing.components.ComboBoxEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch CommonAPI",
+            "request": "launch",
+            "mainClass": "swing.components.CommonAPI",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch JLabelEx",
+            "request": "launch",
+            "mainClass": "swing.components.JLabelEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch ListEx",
+            "request": "launch",
+            "mainClass": "swing.components.ListEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch TabbedPaneEx",
+            "request": "launch",
+            "mainClass": "swing.components.TabbedPaneEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch TextFieldAreaEx",
+            "request": "launch",
+            "mainClass": "swing.components.TextFieldAreaEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch ActionEventEx",
+            "request": "launch",
+            "mainClass": "swing.event.ActionEventEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch KeyEventEx",
+            "request": "launch",
+            "mainClass": "swing.event.KeyEventEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MouseEventEx",
+            "request": "launch",
+            "mainClass": "swing.event.MouseEventEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MyActionEvent",
+            "request": "launch",
+            "mainClass": "swing.event.MyActionEvent",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch TextMove",
+            "request": "launch",
+            "mainClass": "swing.event.TextMove",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch BorderLayoutFrame",
+            "request": "launch",
+            "mainClass": "swing.frame.BorderLayoutFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch ContentPaneFrame",
+            "request": "launch",
+            "mainClass": "swing.frame.ContentPaneFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch FlowLayoutFrame",
+            "request": "launch",
+            "mainClass": "swing.frame.FlowLayoutFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch GridLayoutFrame",
+            "request": "launch",
+            "mainClass": "swing.frame.GridLayoutFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MyFrame",
+            "request": "launch",
+            "mainClass": "swing.frame.MyFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch NoLayoutFrame",
+            "request": "launch",
+            "mainClass": "swing.frame.NoLayoutFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MyMainFrame",
+            "request": "launch",
+            "mainClass": "swing.info.MyMainFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MyEditor",
+            "request": "launch",
+            "mainClass": "swing.menu.MyEditor",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch ContentPaneFrame(1)",
+            "request": "launch",
+            "mainClass": "swing.qna.ContentPaneFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch JDBC_Test(1)",
+            "request": "launch",
+            "mainClass": "swing.qna.JDBC_Test",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MouseEx",
+            "request": "launch",
+            "mainClass": "swing.qna.MouseEx",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MainFrame",
+            "request": "launch",
+            "mainClass": "swing.qna.iks.MainFrame",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
+            "name": "Launch MyEditor(1)",
+            "request": "launch",
+            "mainClass": "swing.qna.iks.MyEditor",
+            "projectName": "Java_Classes"
+        }
+    ]
+}

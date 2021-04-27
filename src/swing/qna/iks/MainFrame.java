@@ -1,10 +1,11 @@
 package swing.qna.iks;
 
+
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -19,7 +20,7 @@ public class MainFrame extends JFrame implements ActionListener{
 	private JTextField productText, priceText;
 	private JTextArea textArea;
 	private HashMap<String, String> hash = new HashMap<>();
-
+ 
 	public MainFrame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
@@ -31,7 +32,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		setVisible(true);
 	}
-
+ 
 	private void makeFrame() {
 		setLayout(new FlowLayout());
 		
@@ -45,6 +46,7 @@ public class MainFrame extends JFrame implements ActionListener{
 		add(price);
 		
 		priceText = new JTextField(10);
+		priceText.addActionListener(this);
 		add(priceText);
 		
 		btnSave = new JButton("저장");
@@ -71,22 +73,22 @@ public class MainFrame extends JFrame implements ActionListener{
 		
 		
 	}
-
+ 
 	public static void main(String[] args) {
-		new MainFrame("내 프레임", 300, 300);
-
+		new MainFrame("내 프레임", 350, 300);
+ 
 	}
-
+ 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		
-		if(obj == btnSave) {
+		if(obj == btnSave || obj == priceText) {
 			hash.put(productText.getText(), priceText.getText());
+			saveFile();
 			textArea.append("물건 : " + productText.getText() + ", " + "가격 : " + priceText.getText() + "\n");
 			productText.setText("");
 			priceText.setText("");
-			saveFile();
 		}
 		
 		else if(obj == btnFind) {
@@ -102,28 +104,27 @@ public class MainFrame extends JFrame implements ActionListener{
 		}
 		
 	}
-
+ 
 	private void saveFile() {
-		String product = hash.get(productText.getText());
-		String price = hash.get(priceText.getText());
+		String product = productText.getText();
+		String price = priceText.getText();
 		
-		String filepath = "C:\\Users\\kyoun\\OneDrive\\Desktop\\database.txt";
+//		String path = "C:\\Users\\kyoun\\OneDrive\\Desktop\\datadase.txt";
+		String rootPath = System.getProperty("user.dir");;
+		System.out.println(rootPath);
+		String path = rootPath + "\\database.txt";
 		
 		try {
-			File file = new File(filepath);
-			FileWriter fileWrite = new FileWriter(file, true);
+			FileWriter out = new FileWriter(path, true);
 			
-			fileWrite.write(product);
-			fileWrite.write(price);
-			fileWrite.write("\n");
+			out.write("물건 : " + product);
+			out.write(" 가격 : " + price);
+			out.write("\n");
 			
-			fileWrite.flush();
-			
-			fileWrite.close();
-		}
-		catch (Exception e) {
+			out.close();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-
+ 
 }
