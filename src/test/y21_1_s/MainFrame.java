@@ -24,7 +24,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	public MainFrame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(300, 200); 
+		setLocation(500, 200); 
 		//setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
