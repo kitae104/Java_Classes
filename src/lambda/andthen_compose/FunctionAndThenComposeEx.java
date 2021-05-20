@@ -13,11 +13,13 @@ public class FunctionAndThenComposeEx {
 		functionA = (m) -> m.getAddress();
 		functionB = (a) -> a.getCity();
 		
+		// andThen 사용 
 		functionAB = functionA.andThen(functionB);
 		
 		String city = functionAB.apply(new Member("홍길동", "hong", new Address("한국", "서울")));
 		System.out.println("거주 도시 : " + city);
 		
+		// compose 사용 
 		functionAB = functionB.compose(functionA);
 		
 		city = functionAB.apply(new Member("홍길동", "hong", new Address("한국", "서울")));
