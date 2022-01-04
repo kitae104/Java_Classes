@@ -22,53 +22,17 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="libs/ojdbc6.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
+	<classpathentry kind="lib" path="D:/Utils/Java/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="D:/Utils/Java/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="D:/Utils/Java/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="D:/Utils/Java/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="D:/Utils/Java/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="D:/Utils/Java/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="D:/Utils/Java/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="D:/Utils/Java/openjfx-17.0.1_windows-x64_bin-sdk/javafx-sdk-17.0.1/lib/javafx-swt.jar"/>
 	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/javafx.base.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/javafx.controls.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/javafx.fxml.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/javafx.graphics.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/javafx.media.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/javafx.swing.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/javafx.web.jar">
-		<attributes>
-			<attribute name="module" value="true"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="libs/javafx-swt.jar">
-		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
