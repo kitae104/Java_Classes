@@ -1,11 +1,13 @@
-package test.y21_1_s;
+package test.y22_1_m;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -13,15 +15,17 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class MainFrame extends JFrame implements ActionListener {	
+public class Test_D_Frame extends JFrame implements ActionListener {	
 
 	private JMenuBar mb;
 	private JMenu menuTest;
 	private JMenuItem menuItemQ1;
 	private JPanel panelBase;
-	private JTextArea ta;
+	private JList list;
+	private DefaultListModel<String>  listModel;
 
-	public MainFrame(String title, int width, int height) {
+
+	public Test_D_Frame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 		setLocation(300, 200); 
@@ -37,8 +41,9 @@ public class MainFrame extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 	
-	public JTextArea getTa() {
-		return ta;
+	
+	public DefaultListModel<String> getListModel() {
+		return listModel;
 	}
 
 	private void makeMenu() {
@@ -62,8 +67,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		panelBase.setLayout(new BorderLayout());
 		panelBase.setBackground(Color.YELLOW);
 		
-		ta = new JTextArea();
-		JScrollPane sp = new JScrollPane(ta, 
+		listModel = new DefaultListModel<>();
+		
+		list = new JList();
+		list.setModel(listModel);
+		JScrollPane sp = new JScrollPane(list, 
 				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
 				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		panelBase.add(sp);
@@ -72,17 +80,15 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
-		new MainFrame("학번  이름", 200, 200);
+		new Test_D_Frame("학번  이름", 300, 300);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		
-		if(obj == menuItemQ1) {
-			
-			new SimpleCalcFrame("간단한 계산기", 300, 150, this);
-			
+		if(obj == menuItemQ1) {			
+			//new LayoutTest("간단한 계산기", 350, 250, this);			
 		}
 	}
 

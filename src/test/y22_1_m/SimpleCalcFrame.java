@@ -1,4 +1,4 @@
-package test.y21_1_s;
+package test.y22_1_m;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -29,9 +29,9 @@ public class SimpleCalcFrame extends JFrame implements ActionListener {
 	private JTextField tfResult;
 	private JComboBox<String> cb;
 	private JButton btnResult;
-	private MainFrame mf;
+	private Test_A_Frame mf;
 	
-	public SimpleCalcFrame(String title, int width, int height, MainFrame mf) {
+	public SimpleCalcFrame(String title, int width, int height, Test_A_Frame mf) {
 		this.mf = mf;
 		setTitle(title);
 		setSize(width, height);

@@ -17,7 +17,7 @@ public class LayoutTest extends JFrame {
 	public LayoutTest(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300);
+		setLocation(300, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);		
 		
@@ -53,9 +53,11 @@ public class LayoutTest extends JFrame {
 		panelRight.add(lbl3);
 
 		JCheckBox chkBox1 = new JCheckBox("C# JCheckBox");
+		chkBox1.setBackground(Color.GREEN);
 		panelRight.add(chkBox1);
 
 		JCheckBox chkBox2 = new JCheckBox("C++ JCheckBox");
+		chkBox2.setBackground(Color.GREEN);
 		panelRight.add(chkBox2);
 		
 		panelBase.add(panelRight);

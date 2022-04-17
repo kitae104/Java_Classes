@@ -1,26 +1,32 @@
-package test.y21_1_s;
+package test.y22_1_m;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 
-public class TestFrame extends JFrame implements ActionListener {
+public class Test_C_Frame extends JFrame implements ActionListener {
 
 	private JPanel basePanel;
 	private JButton btn1;
 	private JButton btn3;
 	private SimpleCalcFrame2 scf;
 	private ResultFrame rf;
+	private JList<String> list;
+	private DefaultListModel<String> model;
 
-	public TestFrame(String title, int width, int height) {
+	public Test_C_Frame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(450, 200);
+		setLocation(300, 200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		setBasePanel();
@@ -36,16 +42,21 @@ public class TestFrame extends JFrame implements ActionListener {
 
 		btn1 = new JButton("프레임 열기");
 		btn1.addActionListener(this);
-		btn3 = new JButton("종료");
+		
+		model = new DefaultListModel<>();
+		list = new JList<>(model);
+		JScrollPane sp = new JScrollPane(list, 
+				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
+				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
 		basePanel.add(btn1);
-		basePanel.add(btn3);
+		basePanel.add(sp);
 
 		add(basePanel);
 	}
 
 	public static void main(String[] args) {
-		new TestFrame("내 프레임", 150, 200);
+		new Test_C_Frame("내 프레임", 150, 200);
 	}
 
 	@Override
@@ -53,11 +64,12 @@ public class TestFrame extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 
 		if (obj == btn1) {
-			scf = new SimpleCalcFrame2("간단한 계산기", 300, 150);
-			rf = new ResultFrame("결과", 250, 250);
-			scf.setRf(rf);
+			new LayoutTest("간단한 계산기", 350, 250, this);			
 		}
 
 	}
 
+	public DefaultListModel<String> getModel() {
+		return model;
+	}	
 }

@@ -1,4 +1,4 @@
-package test.y21_1_s;
+package test.y22_1_m;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class MainFrame extends JFrame implements ActionListener {	
+public class Test_A_Frame extends JFrame implements ActionListener {	
 
 	private JMenuBar mb;
 	private JMenu menuTest;
@@ -21,7 +21,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JPanel panelBase;
 	private JTextArea ta;
 
-	public MainFrame(String title, int width, int height) {
+	public Test_A_Frame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 		setLocation(300, 200); 
@@ -72,7 +72,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	}
 	
 	public static void main(String[] args) {
-		new MainFrame("학번  이름", 200, 200);
+		new Test_A_Frame("학번  이름", 300, 150);
 	}
 
 	@Override
