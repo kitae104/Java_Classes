@@ -30,14 +30,14 @@ public class Login extends JFrame implements ActionListener {
 	public Login(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(1800, 300);
+		setLocation(300, 300);
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃
 		setLayout(new BorderLayout());
 		
 		createPanBase();
-		add(panBase);
+		
 		
 		setVisible(true);
 	}
@@ -51,6 +51,8 @@ public class Login extends JFrame implements ActionListener {
 		panBase.add(panCenter, BorderLayout.CENTER);
 		createPanSouth();
 		panBase.add(panSouth, BorderLayout.SOUTH);
+		
+		add(panBase);
 	}
 
 	private void createPanCenter() {
@@ -80,7 +82,7 @@ public class Login extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		DB.init();
+		//DB.init();
 		new Login("Login", 300, 150);
 	}
 
