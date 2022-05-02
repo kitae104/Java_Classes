@@ -1,10 +1,11 @@
-package test.y21_1_s;
+package test.y22_1_m;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -15,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SimpleCalcFrame extends JFrame implements ActionListener {	
+public class SimpleCalcFrame2 extends JFrame implements ActionListener {	
 
 	private JPanel upPanel;
 	private JPanel cenPanel;
@@ -28,11 +29,11 @@ public class SimpleCalcFrame extends JFrame implements ActionListener {
 	private JTextField tf2;
 	private JTextField tfResult;
 	private JComboBox<String> cb;
-	private JButton btnResult;
-	private MainFrame mf;
+	private JButton btnResult;	
+	private ResultFrame rf;
 	
-	public SimpleCalcFrame(String title, int width, int height, MainFrame mf) {
-		this.mf = mf;
+	public SimpleCalcFrame2(String title, int width, int height) {
+		
 		setTitle(title);
 		setSize(width, height);
 		setLocation(600, 200); 
@@ -44,12 +45,22 @@ public class SimpleCalcFrame extends JFrame implements ActionListener {
 		
 		setVisible(true);
 	}
-		
+			
+	public ResultFrame getRf() {
+		return rf;
+	}
+
+	public void setRf(ResultFrame rf) {
+		this.rf = rf;
+	}
+
+
+
 	private void setUpPanel() {
 		upPanel = new JPanel();		
 		upPanel.setBackground(Color.YELLOW);
 		
-		JLabel lbl = new JLabel("202145000 / A반 / 홍길동");		
+		JLabel lbl = new JLabel("학년 / 반 / 이름");		
 		
 		upPanel.add(lbl);
 		
@@ -96,14 +107,12 @@ public class SimpleCalcFrame extends JFrame implements ActionListener {
 
 	private void setDownPanel() {
 		downPanel = new JPanel();
-		downPanel.setLayout(new GridLayout(1, 2, 5, 0));
-		downPanel.setBorder(BorderFactory.createEmptyBorder(5 , 10, 5 , 10));
+		//downPanel.setBackground(Color.PINK);
 		
 		btnSend = new JButton("결과 보내기");
 		btnSend.addActionListener(this);
 		
 		btn2 = new JButton("닫기");
-		btn2.addActionListener(this);
 		
 		downPanel.add(btnSend);
 		downPanel.add(btn2);
@@ -139,10 +148,8 @@ public class SimpleCalcFrame extends JFrame implements ActionListener {
 			
 			tfResult.setText(result+"");
 		} else if(obj == btnSend) {
-			mf.getTa().append("계산 결과 : " + tf1.getText() + cb.getSelectedItem() 
-			                                 + tf2.getText() + " = " + tfResult.getText() + "\n");
-		} else if(obj == btn2) {
-			this.setVisible(false);
+			rf.getTf().setText(tfResult.getText());			
+			
 		}
 		
 	}
