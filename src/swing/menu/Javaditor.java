@@ -29,9 +29,13 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
+import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
+import org.fife.ui.rtextarea.RTextScrollPane;
+
 import swing.components.CheckBoxEx;
 
-public class MyEditor extends JFrame implements ActionListener {
+public class Javaditor extends JFrame implements ActionListener {
 
 	private JMenuBar mb;
 	private JMenu menuFile, menuEdit, menuInfo;
@@ -43,14 +47,16 @@ public class MyEditor extends JFrame implements ActionListener {
 	private JButton btnNew, btnOpen, btnSave, btnExit;
 	private JButton btnOk;
 	
-	private JTextArea ta;
+//	private JTextArea ta;
+	private RSyntaxTextArea textArea;
 	
 	private final int EXIT_SUCCESS = 0;	// 상수 
 	
-	private ImageIcon[] imgs = { new ImageIcon("images/new.png"),
-			  new ImageIcon("images/open.png"),
-			  new ImageIcon("images/save.png"),
-			  new ImageIcon("images/exit.png")
+	private ImageIcon[] imgs = { 
+			new ImageIcon("images/new.png"),
+			new ImageIcon("images/open.png"),
+			new ImageIcon("images/save.png"),
+			new ImageIcon("images/exit.png")
 	};
 		
 	private CheckBoxEx chkEx;
@@ -59,7 +65,7 @@ public class MyEditor extends JFrame implements ActionListener {
 	
 	private JTextField tf;
 	
-	public MyEditor(String title, int width, int height) {
+	public Javaditor(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 //		setLocation(1800, 300);
@@ -92,19 +98,11 @@ public class MyEditor extends JFrame implements ActionListener {
 		panelBase.setLayout(new BorderLayout());
 		panelBase.setBackground(Color.YELLOW);
 		
-		/*
-		tf = new JTextField(20);
-		panelBase.add(tf);
-		
-		btnOk = new JButton("확인");
-		btnOk.addActionListener(this);
-		panelBase.add(btnOk);
-		*/
-		
-		ta = new JTextArea();
-		JScrollPane sp = new JScrollPane(ta, 
-				JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, 
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		textArea = new RSyntaxTextArea(20, 60);
+		textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+        textArea.setCodeFoldingEnabled(true);
+        RTextScrollPane sp = new RTextScrollPane(textArea);
+				
 		panelBase.add(sp);
 	}
 
@@ -164,16 +162,13 @@ public class MyEditor extends JFrame implements ActionListener {
 		
 		menuInfo.add(menuItemInfo);
 		
-		
 		mb.add(menuFile);
 		mb.add(menuEdit);
-		mb.add(menuInfo);
-		
+		mb.add(menuInfo);		
 	}
 
 	public static void main(String[] args) {
-		new MyEditor("간단 메모장", 800, 500);
-		
+		new Javaditor("간단 메모장", 800, 500);		
 	}
 
 	@Override
@@ -185,13 +180,14 @@ public class MyEditor extends JFrame implements ActionListener {
 			checkExit();
 			
 		} else if(obj == menuItemInfo) {
-			chkEx = new CheckBoxEx("체크박스 연습", 250, 200, this);			
+			// 기능 추가 필요 !!
+			
 		} else if(obj == btnOk) {
 			String msg = JOptionPane.showInputDialog("숫자1?");
 			int sum = Integer.parseInt(msg) + 10;
 			tf.setText(sum + "");
 		} else if(obj == btnNew) {
-			ta.setText("");
+			textArea.setText("");
 		} else if (obj == btnOpen || obj == menuItemOpen) {			
 			JFileChooser fc = new JFileChooser();
 			fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
@@ -208,7 +204,7 @@ public class MyEditor extends JFrame implements ActionListener {
 			try {				
 				br = new BufferedReader(new FileReader(in));				
 				while((line = br.readLine()) != null) {
-					ta.append(line + "\n");
+					textArea.append(line + "\n");
 				}
 			} catch (FileNotFoundException e1) {				
 				e1.printStackTrace();
@@ -235,7 +231,7 @@ public class MyEditor extends JFrame implements ActionListener {
 		
 			try {				
 				bw = new BufferedWriter(new FileWriter(out));	
-				String str = ta.getText();
+				String str = textArea.getText();
 				str = str.replace("\n", System.getProperty("line.separator"));
 				bw.write(str);
 				
