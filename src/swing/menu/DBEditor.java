@@ -2,7 +2,6 @@ package swing.menu;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -15,7 +14,6 @@ import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JColorChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -24,10 +22,14 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.JTree;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
@@ -35,7 +37,7 @@ import org.fife.ui.rtextarea.RTextScrollPane;
 
 import swing.components.CheckBoxEx;
 
-public class Javaditor extends JFrame implements ActionListener {
+public class DBEditor extends JFrame implements ActionListener {
 
 	private JMenuBar mb;
 	private JMenu menuFile, menuEdit, menuInfo;
@@ -56,6 +58,8 @@ public class Javaditor extends JFrame implements ActionListener {
 			new ImageIcon("images/new.png"),
 			new ImageIcon("images/open.png"),
 			new ImageIcon("images/save.png"),
+			new ImageIcon("images/compile.png"),
+			new ImageIcon("images/run.png"),
 			new ImageIcon("images/exit.png")
 	};
 		
@@ -64,8 +68,15 @@ public class Javaditor extends JFrame implements ActionListener {
 	private JPanel panelBase;
 	
 	private JTextField tf;
+	private JTree tree;
+	private JTextArea ta;
+	private JMenu menuRun;
+	private JMenuItem menuItemCompile;
+	private JMenuItem menuItemRun;
+	private JButton btnCompile;
+	private JButton btnRun;
 	
-	public Javaditor(String title, int width, int height) {
+	public DBEditor(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 //		setLocation(1800, 300);
@@ -97,13 +108,20 @@ public class Javaditor extends JFrame implements ActionListener {
 		panelBase = new JPanel();
 		panelBase.setLayout(new BorderLayout());
 		panelBase.setBackground(Color.YELLOW);
-		
+        		
+        // 새로운 RSyntaxTextArea
 		textArea = new RSyntaxTextArea(20, 60);
-		textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+		textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_SQL);
         textArea.setCodeFoldingEnabled(true);
         RTextScrollPane sp = new RTextScrollPane(textArea);
-				
-		panelBase.add(sp);
+        
+        ta = new JTextArea();
+        JScrollPane scrollPane = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        
+        JSplitPane jsp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, scrollPane);
+		jsp.setDividerLocation(200);
+        
+		panelBase.add(jsp);
 	}
 
 	private void makeToolBar() {
@@ -118,13 +136,22 @@ public class Javaditor extends JFrame implements ActionListener {
 		btnSave = new JButton(imgs[2]);
 		btnSave.addActionListener(this);
 		
-		btnExit = new JButton(imgs[3]);
+		btnCompile = new JButton(imgs[3]);
+		btnCompile.addActionListener(this);
+		
+		btnRun = new JButton(imgs[4]);
+		btnRun.addActionListener(this);
+		
+		btnExit = new JButton(imgs[5]);
 		btnExit.addActionListener(this);
 		btnExit.setToolTipText("프로그램을 종료합니다.");
 		
 		toolBar.add(btnNew);
 		toolBar.add(btnOpen);
 		toolBar.add(btnSave);
+		toolBar.addSeparator();
+		toolBar.add(btnCompile);
+		toolBar.add(btnRun);
 		toolBar.addSeparator();
 		toolBar.add(btnExit);
 		
@@ -156,6 +183,13 @@ public class Javaditor extends JFrame implements ActionListener {
 		menuEdit = new JMenu("편집");
 		
 		
+		menuRun = new JMenu("실행");
+		menuItemCompile = new JMenuItem("컴파일");
+		menuItemRun = new JMenuItem("실행");
+				
+		menuRun.add(menuItemCompile);
+		menuRun.add(menuItemRun);
+		
 		menuInfo = new JMenu("정보");
 		menuItemInfo = new JMenuItem("프로그램정보");
 		menuItemInfo.addActionListener(this);
@@ -164,11 +198,12 @@ public class Javaditor extends JFrame implements ActionListener {
 		
 		mb.add(menuFile);
 		mb.add(menuEdit);
+		mb.add(menuRun);
 		mb.add(menuInfo);		
 	}
 
 	public static void main(String[] args) {
-		new Javaditor("간단 메모장", 800, 500);		
+		new DBEditor("DB Editor", 1000, 600);		
 	}
 
 	@Override
