@@ -1,0 +1,14 @@
+<factorypath>
+    <factorypathentry kind="EXTJAR" id="D:\Utils\Java\openjfx-17.0.1_windows-x64_bin-sdk\javafx-sdk-17.0.1\lib\javafx.base.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\Utils\Java\openjfx-17.0.1_windows-x64_bin-sdk\javafx-sdk-17.0.1\lib\javafx.controls.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\Utils\Java\openjfx-17.0.1_windows-x64_bin-sdk\javafx-sdk-17.0.1\lib\javafx.fxml.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\Utils\Java\openjfx-17.0.1_windows-x64_bin-sdk\javafx-sdk-17.0.1\lib\javafx.graphics.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\Utils\Java\openjfx-17.0.1_windows-x64_bin-sdk\javafx-sdk-17.0.1\lib\javafx.media.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\Utils\Java\openjfx-17.0.1_windows-x64_bin-sdk\javafx-sdk-17.0.1\lib\javafx.swing.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\Utils\Java\openjfx-17.0.1_windows-x64_bin-sdk\javafx-sdk-17.0.1\lib\javafx.web.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="EXTJAR" id="D:\Utils\Java\openjfx-17.0.1_windows-x64_bin-sdk\javafx-sdk-17.0.1\lib\javafx-swt.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/projectlombok/lombok/1.18.18/lombok-1.18.18.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/org/jsoup/jsoup/1.13.1/jsoup-1.13.1.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="VARJAR" id="M2_REPO/com/fifesoft/rsyntaxtextarea/3.2.0/rsyntaxtextarea-3.2.0.jar" enabled="true" runInBatchMode="false"/>
+    <factorypathentry kind="PLUGIN" id="org.eclipse.jst.ws.annotations.core" enabled="true" runInBatchMode="false"/>
+</factorypath>

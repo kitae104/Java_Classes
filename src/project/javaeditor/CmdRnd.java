@@ -1,9 +1,11 @@
 package project.javaeditor;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class CmdRnd
 {
@@ -13,6 +15,8 @@ public class CmdRnd
 	private final String FILENAME = "Test.java";
 	private File file;
 	private BufferedWriter bufferWriter;
+	private BufferedReader bufferedReader;
+	private StringBuffer readBuffer;
 
 	public String inputSource(String source)
 	{
@@ -60,12 +64,30 @@ public class CmdRnd
 		try
 		{
 			process = Runtime.getRuntime().exec(cmd);
+			process = Runtime.getRuntime().exec(runClass());
+			
+			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			String line = null; 
+			readBuffer  = new StringBuffer();
+			
+			while((line = bufferedReader.readLine()) != null) {
+				readBuffer.append(line);
+				readBuffer.append("\n");
+			}
+			return readBuffer.toString();
 		} 
 		catch (IOException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	private String runClass() {
+		buffer = new StringBuffer();
+		buffer.append("cmd.exe ");
+		buffer.append("/c ");
+		buffer.append("java Test");
+		return buffer.toString();
 	}
 }
