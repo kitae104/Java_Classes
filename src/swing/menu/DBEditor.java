@@ -11,6 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,13 +24,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.table.DefaultTableModel;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
@@ -75,6 +76,9 @@ public class DBEditor extends JFrame implements ActionListener {
 	private JMenuItem menuItemRun;
 	private JButton btnCompile;
 	private JButton btnRun;
+	private Vector<String> vector;
+	private DefaultTableModel model;
+	private JTable table;
 	
 	public DBEditor(String title, int width, int height) {
 		setTitle(title);
@@ -118,7 +122,25 @@ public class DBEditor extends JFrame implements ActionListener {
         ta = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        JSplitPane jsp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, scrollPane);
+        
+        vector = new Vector<String>();
+		vector.addElement("컬럼1");
+		vector.addElement("컬럼2");
+		vector.add("컬럼3");
+		vector.add("컬럼4");
+		vector.add("컬럼5");
+		vector.add("컬럼6");
+		
+		//defaultTableModel 생성
+		model = new DefaultTableModel(vector, 0){
+			public boolean isCellEditable(int r, int c){
+				return (c!=0) ? true : false;
+			}
+		};
+		table = new JTable(model);
+		JScrollPane scroll = new JScrollPane(table);
+        
+        JSplitPane jsp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, scroll);
 		jsp.setDividerLocation(200);
         
 		panelBase.add(jsp);

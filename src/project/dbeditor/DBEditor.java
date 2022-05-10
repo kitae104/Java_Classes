@@ -1,4 +1,4 @@
-package project.javaeditor;
+package project.dbeditor;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Vector;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,21 +24,22 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JTree;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
+import javax.swing.table.DefaultTableModel;
 
 import org.fife.ui.rsyntaxtextarea.RSyntaxTextArea;
 import org.fife.ui.rsyntaxtextarea.SyntaxConstants;
 import org.fife.ui.rtextarea.RTextScrollPane;
 
 import swing.components.CheckBoxEx;
+import test.ListTest;
 
-public class JavaEditor extends JFrame implements ActionListener {
+public class DBEditor extends JFrame implements ActionListener {
 
 	private JMenuBar mb;
 	private JMenu menuFile, menuEdit, menuInfo;
@@ -76,13 +77,11 @@ public class JavaEditor extends JFrame implements ActionListener {
 	private JMenuItem menuItemRun;
 	private JButton btnCompile;
 	private JButton btnRun;
+	private Vector<String> vector;
+	private DefaultTableModel model;
+	private JTable table;
 	
-	private String fileName = null;
-	private Process process;
-	private BufferedReader bufferedReader;
-	private StringBuffer readBuffer;
-	
-	public JavaEditor(String title, int width, int height) {
+	public DBEditor(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 //		setLocation(1800, 300);
@@ -114,37 +113,24 @@ public class JavaEditor extends JFrame implements ActionListener {
 		panelBase = new JPanel();
 		panelBase.setLayout(new BorderLayout());
 		panelBase.setBackground(Color.YELLOW);
-		         
-        // JTree 처리하기 
-        tree = new JTree();
-        
-        String path = System.getProperty("user.dir");
-        File fileRoot = new File(path);
-
-        DefaultMutableTreeNode root = new DefaultMutableTreeNode(fileRoot);
-        DefaultTreeModel model = new DefaultTreeModel(root);
-
-        File[] subItems = fileRoot.listFiles();
-        for (File file : subItems) {
-          root.add(new DefaultMutableTreeNode(file));
-        }        
-        tree.setModel(model);
-		
+        		
         // 새로운 RSyntaxTextArea
 		textArea = new RSyntaxTextArea(20, 60);
-		textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_JAVA);
+		textArea.setSyntaxEditingStyle(SyntaxConstants.SYNTAX_STYLE_SQL);
         textArea.setCodeFoldingEnabled(true);
         RTextScrollPane sp = new RTextScrollPane(textArea);
         
         ta = new JTextArea();
         JScrollPane scrollPane = new JScrollPane(ta, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         
-        JSplitPane jsp2 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, scrollPane);
-		jsp2.setDividerLocation(350);
         
-		
-        JSplitPane jsp = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, tree, jsp2);
-		jsp.setDividerLocation(150);
+       
+        ListTableModel model = new ListTableModel(0);        
+		table = new JTable(model);
+		JScrollPane scroll = new JScrollPane(table);
+        
+        JSplitPane jsp = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sp, scroll);
+		jsp.setDividerLocation(200);
         
 		panelBase.add(jsp);
 	}
@@ -206,13 +192,11 @@ public class JavaEditor extends JFrame implements ActionListener {
 		menuFile.add(menuItemExit);
 		
 		menuEdit = new JMenu("편집");
-				
+		
+		
 		menuRun = new JMenu("실행");
 		menuItemCompile = new JMenuItem("컴파일");
-		menuItemCompile.addActionListener(this);
-		
 		menuItemRun = new JMenuItem("실행");
-		menuItemRun.addActionListener(this);
 				
 		menuRun.add(menuItemCompile);
 		menuRun.add(menuItemRun);
@@ -230,14 +214,14 @@ public class JavaEditor extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new JavaEditor("Java Editor", 1000, 600);		
+		new DBEditor("DB Editor", 1000, 600);		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
 		
-		if(obj == menuItemExit || obj == btnExit) {	
+		if(obj == menuItemExit || obj == btnExit) {
 			
 			checkExit();
 			
@@ -245,166 +229,70 @@ public class JavaEditor extends JFrame implements ActionListener {
 			// 기능 추가 필요 !!
 			
 		} else if(obj == btnOk) {
-			
 			String msg = JOptionPane.showInputDialog("숫자1?");
 			int sum = Integer.parseInt(msg) + 10;
 			tf.setText(sum + "");
-			
-		} else if(obj == btnNew || obj == menuItemNew) {
-			
+		} else if(obj == btnNew) {
 			textArea.setText("");
-			
 		} else if (obj == btnOpen || obj == menuItemOpen) {			
+			JFileChooser fc = new JFileChooser();
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
+			//fc.setAcceptAllFileFilterUsed(false);
 			
-			fileOpen();
+			fc.showOpenDialog(null);
+			
+			File in = fc.getSelectedFile();
+			BufferedReader br = null;
+			String line = null;
+		
+			try {				
+				br = new BufferedReader(new FileReader(in));				
+				while((line = br.readLine()) != null) {
+					textArea.append(line + "\n");
+				}
+			} catch (FileNotFoundException e1) {				
+				e1.printStackTrace();
+			} catch (IOException e1) {				
+				e1.printStackTrace();
+			} finally {
+				try {					
+					br.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}
 			
 		} else if(obj == btnSave || obj == menuItemSave) {
+			JFileChooser fc = new JFileChooser();
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
+			fc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
 			
-			fileSave();
+			fc.showSaveDialog(null);
 			
-		} else if(obj == btnCompile || obj == menuItemCompile) {
-			
-			compileCode();
-			
-			
-		} else if(obj == btnRun || obj == menuItemRun) {
-			
-			runCode();
-			
-		}
-	}
-
-	private void runCode()
-	{
-		if(fileName == null) {
-			JOptionPane.showMessageDialog(this, "실행할 파일이 없습니다.");
-			return;
-		}
+			File out = fc.getSelectedFile();
+			BufferedWriter bw = null;			
 		
-		ta.setText("");
-		
-		String fName = fileName.replace(".java", "");
-		
-		String cmd = "cmd.exe /c java " + fName;
-		System.out.println(cmd);
-		
-		try
-		{
-			process = Runtime.getRuntime().exec(cmd);
-			
-			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			String line = null; 
-						
-			while((line = bufferedReader.readLine()) != null) {
-				ta.append(line + "\n");				
-			}
-			ta.append("실행 완료");
-		} 
-		catch (IOException e1)
-		{
-			e1.printStackTrace();
-		}
-	}
-
-	private void compileCode()
-	{
-		if(fileName == null) {
-			JOptionPane.showMessageDialog(this, "컴파일할 파일이 없습니다.");
-			return;
-		}
-		
-		ta.setText("");
-		
-		String cmd = "cmd.exe /c javac " + fileName;
-		System.out.println(cmd);
-		
-		try
-		{
-			process = Runtime.getRuntime().exec(cmd);
-			
-			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-			String line = null;			
-			
-			while((line = bufferedReader.readLine()) != null) {
-				ta.append(line + "\n");
-			}
-			
-			ta.append("컴파일 완료!");
-		} 
-		catch (IOException e1)
-		{
-			e1.printStackTrace();
-		}
-	}
-
-	private void fileSave()
-	{
-		JFileChooser fc = new JFileChooser();
-		fc.addChoosableFileFilter(new FileNameExtensionFilter("Java", "java"));
-		fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
-		fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
-		fc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
-		
-		fc.showSaveDialog(null);
-		
-		File out = fc.getSelectedFile();
-		
-		fileName = out.getAbsolutePath();
-		
-		BufferedWriter bw = null;			
-
-		try {				
-			bw = new BufferedWriter(new FileWriter(out));	
-			String str = textArea.getText();
-			str = str.replace("\n", System.getProperty("line.separator"));
-			bw.write(str);
-			
-		} catch (FileNotFoundException e1) {				
-			e1.printStackTrace();
-		} catch (IOException e1) {				
-			e1.printStackTrace();
-		} finally {
-			try {					
-				bw.close();
-			} catch (IOException e1) {
+			try {				
+				bw = new BufferedWriter(new FileWriter(out));	
+				String str = textArea.getText();
+				str = str.replace("\n", System.getProperty("line.separator"));
+				bw.write(str);
+				
+			} catch (FileNotFoundException e1) {				
 				e1.printStackTrace();
-			}
-		}
-	}
-
-	private void fileOpen()
-	{
-		JFileChooser fc = new JFileChooser();
-		fc.addChoosableFileFilter(new FileNameExtensionFilter("Java", "java"));
-		fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
-		fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
-		fc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
-		//fc.setAcceptAllFileFilterUsed(false);
-		
-		fc.showOpenDialog(null);
-		
-		File in = fc.getSelectedFile();
-		
-		fileName = in.getAbsolutePath();
-		
-		BufferedReader br = null;
-		String line = null;
-
-		try {				
-			br = new BufferedReader(new FileReader(in));				
-			while((line = br.readLine()) != null) {
-				textArea.append(line + "\n");
-			}
-		} catch (FileNotFoundException e1) {				
-			e1.printStackTrace();
-		} catch (IOException e1) {				
-			e1.printStackTrace();
-		} finally {
-			try {					
-				br.close();
-			} catch (IOException e1) {
+			} catch (IOException e1) {				
 				e1.printStackTrace();
-			}
+			} finally {
+				try {					
+					bw.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}			
+			
 		}
 	}
 

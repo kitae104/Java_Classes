@@ -22,15 +22,18 @@ public class CmdRnd
 	{
 		buffer = new StringBuffer();
 		
-		buffer.append("cmd.exe ");
-		buffer.append("/c ");
-		buffer.append("javac Test.java");
+		buffer.append("cmd.exe /c javac "); 
+		buffer.append(FILENAME);
 		
 		createFileAsSource(source);
 		
 		return buffer.toString();
 	}
 
+	/**
+	 *  텍스트 내용을 파일로 생성하기 - 저장 동작으로 수행 가능 
+	 * @param source
+	 */
 	private void createFileAsSource(String source)
 	{
 		try
@@ -64,7 +67,7 @@ public class CmdRnd
 		try
 		{
 			process = Runtime.getRuntime().exec(cmd);
-			process = Runtime.getRuntime().exec(runClass());
+			
 			
 			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 			String line = null; 
@@ -74,6 +77,20 @@ public class CmdRnd
 				readBuffer.append(line);
 				readBuffer.append("\n");
 			}
+			System.out.println("========================================");
+			System.out.println(readBuffer.toString());
+			System.out.println("========================================");
+			
+			process = Runtime.getRuntime().exec(runClass());
+			bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+			line = null; 
+			readBuffer  = new StringBuffer();
+			
+			while((line = bufferedReader.readLine()) != null) {
+				readBuffer.append(line);
+				readBuffer.append("\n");
+			}
+			
 			return readBuffer.toString();
 		} 
 		catch (IOException e)
@@ -83,11 +100,14 @@ public class CmdRnd
 		return null;
 	}
 
+	/**
+	 * 클래스 파일 수행하는 코드 
+	 * @return
+	 */
 	private String runClass() {
 		buffer = new StringBuffer();
-		buffer.append("cmd.exe ");
-		buffer.append("/c ");
-		buffer.append("java Test");
+		buffer.append("cmd.exe /c java ");
+		buffer.append("Test");
 		return buffer.toString();
 	}
 }
