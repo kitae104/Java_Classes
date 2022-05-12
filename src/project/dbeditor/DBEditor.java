@@ -11,6 +11,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.ImageIcon;
@@ -75,8 +77,8 @@ public class DBEditor extends JFrame implements ActionListener {
 	private JMenu menuRun;
 	private JMenuItem menuItemCompile;
 	private JMenuItem menuItemRun;
-	private JButton btnCompile;
-	private JButton btnRun;
+	private JButton btnSelect;
+	private JButton btnUpdate;
 	private Vector<String> vector;
 	private DefaultTableModel model;
 	private JTable table;
@@ -147,11 +149,11 @@ public class DBEditor extends JFrame implements ActionListener {
 		btnSave = new JButton(imgs[2]);
 		btnSave.addActionListener(this);
 		
-		btnCompile = new JButton(imgs[3]);
-		btnCompile.addActionListener(this);
+		btnSelect = new JButton(imgs[3]);
+		btnSelect.addActionListener(this);
 		
-		btnRun = new JButton(imgs[4]);
-		btnRun.addActionListener(this);
+		btnUpdate = new JButton(imgs[4]);
+		btnUpdate.addActionListener(this);
 		
 		btnExit = new JButton(imgs[5]);
 		btnExit.addActionListener(this);
@@ -161,8 +163,8 @@ public class DBEditor extends JFrame implements ActionListener {
 		toolBar.add(btnOpen);
 		toolBar.add(btnSave);
 		toolBar.addSeparator();
-		toolBar.add(btnCompile);
-		toolBar.add(btnRun);
+		toolBar.add(btnSelect);
+		toolBar.add(btnUpdate);
 		toolBar.addSeparator();
 		toolBar.add(btnExit);
 		
@@ -293,6 +295,20 @@ public class DBEditor extends JFrame implements ActionListener {
 				}
 			}			
 			
+		}
+		else if(obj == btnSelect) {
+			String sql = textArea.getText();
+			ResultSet rs = DB.getResultSet(sql);
+			try
+			{
+				while(rs.next()) {
+					System.out.println(rs.getString(1));
+				}
+			} catch (SQLException e1)
+			{
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 
