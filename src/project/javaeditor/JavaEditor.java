@@ -118,7 +118,7 @@ public class JavaEditor extends JFrame implements ActionListener {
         // JTree 처리하기 
         tree = new JTree();
         
-        String path = System.getProperty("user.dir");
+        String path = "C:\\Users\\김기태\\Documents\\A_SRC";
         File fileRoot = new File(path);
 
         DefaultMutableTreeNode root = new DefaultMutableTreeNode(fileRoot);
@@ -126,7 +126,7 @@ public class JavaEditor extends JFrame implements ActionListener {
 
         File[] subItems = fileRoot.listFiles();
         for (File file : subItems) {
-          root.add(new DefaultMutableTreeNode(file));
+          root.add(new DefaultMutableTreeNode(file.getName()));
         }        
         tree.setModel(model);
 		
@@ -283,9 +283,9 @@ public class JavaEditor extends JFrame implements ActionListener {
 		
 		ta.setText("");
 		
-		String fName = fileName.replace(".java", "");
+		//String fName = fileName.replace(".java", "");
 		
-		String cmd = "cmd.exe /c java " + fName;
+		String cmd = "cmd.exe /c java " + fileName;
 		System.out.println(cmd);
 		
 		try

@@ -107,7 +107,7 @@ public class CmdRnd
 	private String runClass() {
 		buffer = new StringBuffer();
 		buffer.append("cmd.exe /c java ");
-		buffer.append("Test");
+		buffer.append(FILENAME);
 		return buffer.toString();
 	}
 }
