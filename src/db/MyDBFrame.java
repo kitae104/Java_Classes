@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -158,13 +159,16 @@ public class MyDBFrame extends JFrame implements ActionListener
 		{
 			colCnt = rs.getMetaData().getColumnCount();
 			String data[] = new String[colCnt];
+			//Vector<String> data = null; //new Vector<String>();
 			
 			while(rs.next())
 			{
-				for (int i = 0; i < data.length; i++) {
+				//data = new Vector<String>();
+				for (int i = 0; i < colCnt; i++) {
 					data[i] = rs.getString(i + 1);
+					//data.add(rs.getString(i + 1));
 				}
-				model.addRow(data);
+				model.addRow(data);				
 			}		
 			
 		} 
