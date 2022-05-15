@@ -158,19 +158,15 @@ public class MyDBFrame extends JFrame implements ActionListener
 		try
 		{
 			colCnt = rs.getMetaData().getColumnCount();
-			String data[] = new String[colCnt];
-			//Vector<String> data = null; //new Vector<String>();
+			String data[] = new String[colCnt];			
 			
 			while(rs.next())
-			{
-				//data = new Vector<String>();
+			{				
 				for (int i = 0; i < colCnt; i++) {
-					data[i] = rs.getString(i + 1);
-					//data.add(rs.getString(i + 1));
+					data[i] = rs.getString(i + 1);			
 				}
 				model.addRow(data);				
-			}		
-			
+			}					
 		} 
 		catch (SQLException e)
 		{
