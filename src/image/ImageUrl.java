@@ -7,6 +7,8 @@ import java.net.URL;
 
 import javax.imageio.ImageIO;
 
+import project.kakaoapi.KakaoRestApiHelper;
+
 public class ImageUrl
 {
 
@@ -15,10 +17,21 @@ public class ImageUrl
 	public static void main(String[] args)
 	{
 		ImageUrl iu = new ImageUrl();
-		String result = iu.deleteAllFiles("D:/temp/images/");
-		System.out.println(result);
+		String path = "D:/temp/images/";
+		String deleteResult = iu.deleteAllFiles(path);
+		System.out.println(deleteResult);
+		String existResult = iu.existFolder(path);
+		System.out.println(existResult );
+		
+		KakaoRestApiHelper kakao = new KakaoRestApiHelper();
+		kakao.kakak_API_search_web("image", "Windows", path);
 	}
 	
+	/**
+	 * 해당 경로에 있는 모든 파일 지우기 
+	 * @param path
+	 * @return
+	 */
 	public String deleteAllFiles(String path) 
 	{
 		File f = new File(path);
@@ -66,32 +79,5 @@ public class ImageUrl
 		return "해당 디렉토리가 존재합니다.";
 	}
 	
-	/**
-	 * 웹에 있는 이미지 저장하기 
-	 * @param imageUrl
-	 * @param fileName
-	 */
-	public void saveImage(String imageUrl, String fileName)
-	{
-		try
-		{
-			// if you want to get png or jpg ... you can do it
-			URL url = new URL(imageUrl);
-			String extension = imageUrl.substring(imageUrl.indexOf('.') + 1);
-
-			if (!extension.equals("jpg") && !extension.equals("png"))
-			{
-				extension = "jpg";
-			}
-
-			BufferedImage image = ImageIO.read(url);
-			File file = new File(fileName);
-
-			ImageIO.write(image, extension, file);
-		} 
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
+	
 }

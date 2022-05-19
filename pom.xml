@@ -18,12 +18,20 @@
 			<version>1.13.1</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fifesoft/rsyntaxtextarea -->
+		<!-- rsyntaxtextarea -->
 		<dependency>
 			<groupId>com.fifesoft</groupId>
 			<artifactId>rsyntaxtextarea</artifactId>
 			<version>3.2.0</version>
 		</dependency>
+
+		<!-- json-simple -->
+		<dependency>
+			<groupId>com.googlecode.json-simple</groupId>
+			<artifactId>json-simple</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+
 
 	</dependencies>
 	<build>
