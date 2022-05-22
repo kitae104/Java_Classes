@@ -1,4 +1,4 @@
-package db;
+package db.member;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,7 +22,7 @@ import javax.swing.table.TableRowSorter;
 import db.login.DB;
 
 @SuppressWarnings("serial")
-public class MyDBFrame extends JFrame implements ActionListener
+public class MemberListFrame extends JFrame implements ActionListener
 {
 	
 	private JButton btnRefresh, btnInsert, btnSearch, btnUpdate, btnDetete, btnBack;
@@ -30,7 +30,7 @@ public class MyDBFrame extends JFrame implements ActionListener
 	private JTable table;
 	
 
-	public MyDBFrame(String title, int width, int height)
+	public MemberListFrame(String title, int width, int height)
 	{
 		setTitle(title);
 		setSize(width, height);
@@ -178,14 +178,41 @@ public class MyDBFrame extends JFrame implements ActionListener
 	public static void main(String[] args)	
 	{
 		DB.init();
-		new MyDBFrame("내 DB 프레임", 670, 490);
+		new MemberListFrame("내 DB 프레임", 670, 490);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		// TODO Auto-generated method stub
+		Object obj = e.getSource();
+		
+		if(obj == btnInsert)
+		{
+			MemberInsertForm inf = new MemberInsertForm("회원등록", 300, 230);
+		} 
+		else if(obj == btnRefresh){
+			String sql = "select * from MEMBER ";
+			tableRefresh(sql);
+		} 
+	}
 
+	/**
+	 * 테이블 갱신하기
+	 * @param sql
+	 */
+	public void tableRefresh(String sql) {
+		int rowCount = model.getRowCount();
+		for (int i = rowCount - 1; i >= 0; i--) {
+		    model.removeRow(i);
+		}		
+		
+		ResultSet rs;
+		try {
+			rs = DB.getResultSet(sql);
+			setColumnData(rs);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	
 	}
 
 }

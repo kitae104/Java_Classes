@@ -11,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -29,10 +30,11 @@ public class ServerFrame extends JFrame implements ActionListener{
 	private JTextArea ta;	
 	
 	// 네트워크 관련 
-	private ServerSocket server = null;
-	private Socket socket = null;
+	private ServerSocket server = null;	
 	private BufferedReader in = null;
 	private BufferedWriter out = null;
+
+	private ArrayList<ServereThread> threadList = new ArrayList<ServereThread>();
 	
 	public ServerFrame(String title, int width, int height, int x, int y) {		
 		
@@ -109,28 +111,19 @@ public class ServerFrame extends JFrame implements ActionListener{
 	public JButton getBtn() { 
 		return btn;
 	}
-
+	
 	private void setSocket()
 	{
 		try
 		{
 			server = new ServerSocket(9999);
 			ta.append("연결 대기중.....\n");
-			socket = server.accept();
-			ta.append("연결 되었습니다.\n");
-			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));		
-			
-			String inMsg = null;
-			
 			while(true) {
-				inMsg = in.readLine();
-				if(inMsg.equalsIgnoreCase("bye")) {
-					System.out.println();
-					ta.append(inMsg + "\n" + "클라이언트가 나갔습니다.");
-					return;
-				}
-				ta.append("[클라이언트] : " + inMsg + "\n");
+				Socket socket = server.accept();
+				ta.append("연결 되었습니다.\n");
+				ServereThread st = new ServereThread(socket, threadList);
+				threadList.add(st);
+				st.start();
 			}
 		} 
 		catch (IOException e)

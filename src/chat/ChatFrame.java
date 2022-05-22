@@ -90,7 +90,7 @@ public class ChatFrame extends JFrame implements ActionListener{
 				String outMsg = tf.getText();
 				out.write(outMsg + "\n");
 				out.flush();
-				ta.append("[클라이언트] : " + outMsg + "\n");
+				//ta.append("[클라이언트] : " + outMsg + "\n");
 				tf.setText("");
 				tf.requestFocus();
 			} 
