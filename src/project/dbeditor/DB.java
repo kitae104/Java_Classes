@@ -13,9 +13,9 @@ public class DB {
 	
 	public static void init() {
 		try {
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@127.0.0.1:1521:XE", 
+					"jdbc:mysql://114.71.137.174:61083/kt_jap_spring?characterEncoding=UTF-8&useUnicode=yes&serverTimezone=UTC", 
 					"kitae", "1111");
 			stmt = conn.createStatement();
 			System.out.println("DB 연결 성공");
@@ -46,5 +46,5 @@ public class DB {
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		}
-	}
+	}	
 }
