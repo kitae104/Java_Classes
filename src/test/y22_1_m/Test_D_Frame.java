@@ -88,7 +88,8 @@ public class Test_D_Frame extends JFrame implements ActionListener {
 		Object obj = e.getSource();
 		
 		if(obj == menuItemQ1) {			
-			//new LayoutTest("간단한 계산기", 350, 250, this);			
+//			new LayoutTest("간단한 계산기", 350, 250, this);
+			new SimpleCalcFrame2("계산기", 200, 200);
 		}
 	}
 
