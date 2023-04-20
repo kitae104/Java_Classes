@@ -15,15 +15,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class SimpleButtonCalcFrame extends JFrame implements ActionListener {	
+public class SimpleButtonCalcFrame extends JFrame implements ActionListener {
 
 	private JPanel upPanel;
 	private JPanel cenPanel;
 	private JPanel btnPanel;
-	
-	
+
+
 	private JButton btnSend;
-	private JButton btn2;	
+	private JButton btn2;
 	private Test_B_Frame mf;
 	private JTextField tf;
 	private JButton btn1;
@@ -33,46 +33,46 @@ public class SimpleButtonCalcFrame extends JFrame implements ActionListener {
 	private JButton btn5;
 	private JButton btn6;
 	private JButton btnResult;
-	
+
 	public SimpleButtonCalcFrame(String title, int width, int height, Test_B_Frame mf) {
 		this.mf = mf;
 		setTitle(title);
 		setSize(width, height);
-		setLocation(600, 200); 
+		setLocation(600, 200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
+
 		setUpPanel();
 		setCenPanel();
-				
+
 		setVisible(true);
 	}
-		
+
 	private void setUpPanel() {
-		upPanel = new JPanel();		
+		upPanel = new JPanel();
 		upPanel.setBackground(Color.YELLOW);
-		
-		JLabel lbl = new JLabel("202145000 / A반 / 홍길동");		
-		
+
+		JLabel lbl = new JLabel("202145000 / A반 / 홍길동");
+
 		upPanel.add(lbl);
-		
+
 		add(upPanel, BorderLayout.NORTH);
 	}
 
 	private void setCenPanel() {
 		cenPanel = new JPanel();
-		cenPanel.setLayout(new BorderLayout());		
+		cenPanel.setLayout(new BorderLayout());
 		cenPanel.setBorder(BorderFactory.createEmptyBorder(10 , 10 , 10 , 10));
 		//cenPanel.setBackground(Color.GREEN);
-		
+
 		tf = new JTextField("0");
 		tf.setHorizontalAlignment(JTextField.RIGHT);
 		cenPanel.add(tf, BorderLayout.NORTH);
-		
+
 		setBtnPanel();
 		cenPanel.add(btnPanel);
-		
+
 		add(cenPanel, BorderLayout.CENTER);
-		
+
 	}
 
 	private void setBtnPanel() {
@@ -80,31 +80,31 @@ public class SimpleButtonCalcFrame extends JFrame implements ActionListener {
 		//btnPanel.setBackground(Color.RED);
 		btnPanel.setLayout(new GridLayout(2, 4, 5, 5));
 		btnPanel.setBorder(BorderFactory.createEmptyBorder(10 , 10 , 10 , 10));
-		
+
 		btn1 = new JButton("1");
 		btn1.addActionListener(this);
-		
+
 		btn2 = new JButton("2");
 		btn2.addActionListener(this);
-		
+
 		btn3 = new JButton("3");
 		btn3.addActionListener(this);
-		
+
 		btnBack = new JButton("C");
 		btnBack.addActionListener(this);
-		
+
 		btn4 = new JButton("4");
 		btn4.addActionListener(this);
-		
+
 		btn5 = new JButton("5");
 		btn5.addActionListener(this);
-		
+
 		btn6 = new JButton("6");
 		btn6.addActionListener(this);
-		
+
 		btnResult = new JButton("전송");
 		btnResult.addActionListener(this);
-		
+
 		btnPanel.add(btn1);
 		btnPanel.add(btn2);
 		btnPanel.add(btn3);
@@ -118,7 +118,7 @@ public class SimpleButtonCalcFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object obj = e.getSource();
-		
+
 		if(obj == btn1 || obj == btn2 || obj == btn3 || obj == btn4 || obj == btn5 || obj == btn6 ) {
 			String str = tf.getText();
 			if(str.equals("0")) {
@@ -136,7 +136,11 @@ public class SimpleButtonCalcFrame extends JFrame implements ActionListener {
 		} else if(obj == btnResult) {
 			mf.getListModel().addElement(tf.getText());
 			tf.setText("0");
-		}		
+		}
+	}
+
+	public static void main(String[] args) {
+		new SimpleButtonCalcFrame("간단한 계산기", 300, 300, null);
 	}
 
 }

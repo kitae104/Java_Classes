@@ -13,7 +13,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
 
 public class MainListFrame extends JFrame implements ActionListener {	
 
@@ -89,7 +88,7 @@ public class MainListFrame extends JFrame implements ActionListener {
 		
 		if(obj == menuItemQ1) {
 			
-			new SimpleButtonCalcFrame("간단한 계산기", 250, 200, this);
+			new SimpleButtonCalcFrame("간단한 계산기", 250, 200);
 			
 		}
 	}
