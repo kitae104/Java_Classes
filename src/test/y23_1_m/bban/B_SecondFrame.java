@@ -1,18 +1,12 @@
-package test.y22_1_m;
+package test.y23_1_m.bban;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-
-public class ResultFrame extends JFrame implements ActionListener {
+public class B_SecondFrame extends JFrame implements ActionListener {
 
 	private JPanel basePanel;
 	private JPanel upPanel;
@@ -27,7 +21,7 @@ public class ResultFrame extends JFrame implements ActionListener {
 		return tf;
 	}
 
-	public ResultFrame(String title, int width, int height) {
+	public B_SecondFrame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
 		setLocation(900, 200);
@@ -52,7 +46,7 @@ public class ResultFrame extends JFrame implements ActionListener {
 		upPanel.add(tf);
 		upPanel.add(btn);
 
-		add(upPanel, BorderLayout.NORTH);
+		add(upPanel, BorderLayout.SOUTH);
 	}
 
 
@@ -88,7 +82,7 @@ public class ResultFrame extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new ResultFrame("별찍기", 300, 300);
+		new B_SecondFrame("별찍기", 300, 300);
 	}
 
 }
