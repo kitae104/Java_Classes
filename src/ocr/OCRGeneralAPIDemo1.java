@@ -17,9 +17,9 @@ import org.json.JSONObject;
 public class OCRGeneralAPIDemo1 {
 
     public static void main(String[] args) {
-        String apiURL = "YOUR_API_URL";
-        String secretKey = "YOUR_SECRET_KEY";
-        String imageFile = "YOUR_IMAGE_FILE";
+        String apiURL = "";
+        String secretKey = "";
+        String imageFile = "";
 
         try {
             URL url = new URL(apiURL);

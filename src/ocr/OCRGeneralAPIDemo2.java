@@ -2,6 +2,7 @@ package ocr;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -13,8 +14,8 @@ import org.json.JSONObject;
 public class OCRGeneralAPIDemo2 {
 
     public static void main(String[] args) {
-        String apiURL = "YOUR_API_URL";
-        String secretKey = "YOUR_SECRET_KEY";
+        String apiURL = "";
+        String secretKey = "";
 
         try {
             URL url = new URL(apiURL);
@@ -32,12 +33,13 @@ public class OCRGeneralAPIDemo2 {
             json.put("timestamp", System.currentTimeMillis());
             JSONObject image = new JSONObject();
             image.put("format", "jpg");
-            image.put("url", "https://kr.object.ncloudstorage.com/ocr-ci-test/sample/1.jpg"); // image should be public, otherwise, should use data
-            // FileInputStream inputStream = new FileInputStream("YOUR_IMAGE_FILE");
-            // byte[] buffer = new byte[inputStream.available()];
-            // inputStream.read(buffer);
-            // inputStream.close();
-            // image.put("data", buffer);
+            //image.put("url", "https://img2.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202308/15/khan/20230815060010829jvkt.jpg"); // image should be public, otherwise, should use data
+            FileInputStream inputStream = new FileInputStream("ocr_img/ocr1.jpg");
+            byte[] buffer = new byte[inputStream.available()];
+            inputStream.read(buffer);
+            inputStream.close();
+            image.put("data", buffer);
+
             image.put("name", "demo");
             JSONArray images = new JSONArray();
             images.put(image);
