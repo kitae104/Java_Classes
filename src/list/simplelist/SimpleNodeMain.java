@@ -11,23 +11,12 @@ public class SimpleNodeMain {
         mon.link = fri;
         fri.link = sun;
 
-        // 월
-        System.out.println(week.getData());
-        System.out.println(mon.data);
+        Node wed = new Node("수", null);
 
-        // 금
-        System.out.println(week.link.data);
-        System.out.println(mon.link.data);
-        System.out.println(fri.data);
-
-        // 일
-        System.out.println(week.link.link.data);
-        System.out.println(mon.link.link.data);
-        System.out.println(fri.link.data);
-        System.out.println(sun.data);
-
-        // week
-        // while
+        while(week != null) {
+            System.out.println(week.data);
+            week = week.link;
+        }
 
 
 
