@@ -1,6 +1,7 @@
 package collections.arraylist;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Vector;
 
 public class WeekDayList {
@@ -13,6 +14,7 @@ public class WeekDayList {
 
         weekdays.add(1, "수");
 
+        Collections.reverse(weekdays);
 
         for (String day : weekdays) {
             System.out.println(day);
