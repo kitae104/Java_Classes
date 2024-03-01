@@ -20,6 +20,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class StudentInfo extends JFrame
 {
@@ -56,6 +60,8 @@ public class StudentInfo extends JFrame
 	private JTextField tfAge;
 	private JTextField tfDept;
 	private JTextField tfGrade;
+	private JComboBox cbName;
+	private JTextField tfId;
 
 	/**
 	 * Create the frame.
@@ -90,52 +96,87 @@ public class StudentInfo extends JFrame
 		contentPane.add(scrollPane);
 
 		table = new JTable(tableModel);
+		table.addMouseListener(new MouseAdapter() {
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				try {			    	
+					
+					int row = table.getSelectedRow();
+					String id = table.getModel().getValueAt(row, 0).toString();
+					
+					String sql = "SELECT * FROM studentinfo WHERE id = ?" ;
+					PreparedStatement pstmt = connection.prepareStatement(sql);
+					pstmt.setString(1, id);
+										
+					ResultSet rs = pstmt.executeQuery();
+
+					while(rs.next())
+					{
+						tfId.setText(rs.getString("id"));
+						tfUserName.setText(rs.getString("username"));
+						tfPassword.setText(rs.getString("password"));
+						tfAge.setText(rs.getString("age"));
+						tfDept.setText(rs.getString("dept"));
+						tfGrade.setText(rs.getString("grade"));
+					}			
+					
+					pstmt.close();
+					rs.close();	
+	
+				} 
+			    catch (Exception e2)
+				{
+					e2.printStackTrace();
+				}
+			}
+		});
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel = new JLabel("username");
-		lblNewLabel.setBounds(23, 102, 68, 15);
+		lblNewLabel.setBounds(23, 141, 68, 15);
 		contentPane.add(lblNewLabel);
 		
 		tfUserName = new JTextField();
-		tfUserName.setBounds(106, 99, 137, 21);
+		tfUserName.setBounds(106, 138, 137, 21);
 		contentPane.add(tfUserName);
 		tfUserName.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("password");
-		lblPassword.setBounds(23, 137, 68, 15);
+		lblPassword.setBounds(23, 176, 68, 15);
 		contentPane.add(lblPassword);
 		
 		tfPassword = new JTextField();
 		tfPassword.setColumns(10);
-		tfPassword.setBounds(106, 134, 137, 21);
+		tfPassword.setBounds(106, 173, 137, 21);
 		contentPane.add(tfPassword);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("age");
-		lblNewLabel_1_1.setBounds(23, 175, 68, 15);
+		lblNewLabel_1_1.setBounds(23, 214, 68, 15);
 		contentPane.add(lblNewLabel_1_1);
 		
 		tfAge = new JTextField();
 		tfAge.setColumns(10);
-		tfAge.setBounds(106, 172, 137, 21);
+		tfAge.setBounds(106, 211, 137, 21);
 		contentPane.add(tfAge);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("dept");
-		lblNewLabel_1_2.setBounds(23, 216, 68, 15);
+		lblNewLabel_1_2.setBounds(23, 255, 68, 15);
 		contentPane.add(lblNewLabel_1_2);
 		
 		tfDept = new JTextField();
 		tfDept.setColumns(10);
-		tfDept.setBounds(106, 213, 137, 21);
+		tfDept.setBounds(106, 252, 137, 21);
 		contentPane.add(tfDept);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("grade");
 		lblNewLabel_1_3.setToolTipText("g");
-		lblNewLabel_1_3.setBounds(23, 251, 68, 15);
+		lblNewLabel_1_3.setBounds(23, 290, 68, 15);
 		contentPane.add(lblNewLabel_1_3);
 		
 		tfGrade = new JTextField();
 		tfGrade.setColumns(10);
-		tfGrade.setBounds(106, 248, 137, 21);
+		tfGrade.setBounds(106, 287, 137, 21);
 		contentPane.add(tfGrade);
 		
 		JButton btnNewButton = new JButton("Save");
@@ -165,7 +206,7 @@ public class StudentInfo extends JFrame
 				refreshTable();
 			}
 		});
-		btnNewButton.setBounds(65, 309, 91, 23);
+		btnNewButton.setBounds(65, 367, 91, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnUpdate = new JButton("Update");
@@ -196,7 +237,7 @@ public class StudentInfo extends JFrame
 				refreshTable();
 			}
 		});
-		btnUpdate.setBounds(65, 342, 91, 23);
+		btnUpdate.setBounds(65, 400, 91, 23);
 		contentPane.add(btnUpdate);
 		
 		JButton btnDelete = new JButton("Delete");
@@ -223,10 +264,56 @@ public class StudentInfo extends JFrame
 			    refreshTable();
 			}
 		});
-		btnDelete.setBounds(65, 375, 91, 23);
+		btnDelete.setBounds(65, 433, 91, 23);
 		contentPane.add(btnDelete);
 		
-		refreshTable();
+		cbName = new JComboBox();
+		cbName.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {			    	
+					String username = (String) cbName.getSelectedItem();
+					String sql = "SELECT * FROM studentinfo WHERE username = ?" ;
+					PreparedStatement pstmt = connection.prepareStatement(sql);
+					pstmt.setString(1, username);
+										
+					ResultSet rs = pstmt.executeQuery();
+
+					while(rs.next())
+					{
+						tfId.setText(rs.getString("id"));
+						tfUserName.setText(rs.getString("username"));
+						tfPassword.setText(rs.getString("password"));
+						tfAge.setText(rs.getString("age"));
+						tfDept.setText(rs.getString("dept"));
+						tfGrade.setText(rs.getString("grade"));
+					}			
+					
+					pstmt.close();
+					rs.close();	
+	
+				} 
+			    catch (Exception e2)
+				{
+					e2.printStackTrace();
+				}
+			}
+		});
+		cbName.setFont(new Font("굴림", Font.BOLD, 16));
+		cbName.setBounds(23, 60, 220, 23);
+		contentPane.add(cbName);
+		
+		JLabel lblNewLabel_1 = new JLabel("id");
+		lblNewLabel_1.setBounds(23, 106, 50, 15);
+		contentPane.add(lblNewLabel_1);
+		
+		tfId = new JTextField();
+		tfId.setEditable(false);
+		tfId.setBounds(106, 103, 137, 21);
+		contentPane.add(tfId);
+		tfId.setColumns(10);
+		
+		refreshTable();				// 테이블 정보 갱신
+		fillComboBox();				// 콤보박스 정보 갱신
 	}
 
 	//====================================================
@@ -274,10 +361,35 @@ public class StudentInfo extends JFrame
 			setTablefromDB(rs);
 			pstmt.close();
 			rs.close();
-		} catch (Exception e2)
+		} 
+		catch (Exception e)
 		{
-			e2.printStackTrace();
+			e.printStackTrace();
 		}
 	}
+	
+	//====================================================
+	// 콤보 박스 채우기 
+	//====================================================
+	public void fillComboBox() 
+	{
+		try
+		{
+			String sql = "SELECT * FROM studentinfo";
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();
 
+			while(rs.next())
+			{
+				cbName.addItem(rs.getString("username"));
+			}			
+			
+			pstmt.close();
+			rs.close();
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
 }
