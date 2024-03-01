@@ -90,7 +90,7 @@ public class Login
 					String sql = "SELECT * FROM studentinfo WHERE username=? and password=? ";
 					PreparedStatement pstmt = connection.prepareStatement(sql);
 					pstmt.setString(1, textFieldUserName.getText());
-					pstmt.setString(2, passwordField.getText());
+					pstmt.setString(2, passwordField.getText()); 
 					
 					ResultSet rs = pstmt.executeQuery();
 					int count = 0;

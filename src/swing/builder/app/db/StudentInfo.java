@@ -102,8 +102,8 @@ public class StudentInfo extends JFrame
 			public void mouseClicked(MouseEvent e) {
 				try {			    	
 					
-					int row = table.getSelectedRow();
-					String id = table.getModel().getValueAt(row, 0).toString();
+					int row = table.getSelectedRow();	// 테이블에서 선택한 행의 위치 
+					String id = table.getModel().getValueAt(row, 0).toString();	// 선택한 행의 0번째 있는 정보 추출 
 					
 					String sql = "SELECT * FROM studentinfo WHERE id = ?" ;
 					PreparedStatement pstmt = connection.prepareStatement(sql);

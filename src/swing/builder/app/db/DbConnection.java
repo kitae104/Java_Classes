@@ -20,7 +20,7 @@ public class DbConnection
 		} 
 		catch (Exception e)
 		{
-			JOptionPane.showMessageDialog(null, e);
+			JOptionPane.showMessageDialog(null, e); 
 			return null;
 		}
 		
