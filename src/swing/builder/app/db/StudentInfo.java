@@ -10,6 +10,7 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.Vector;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -24,6 +25,17 @@ import javax.swing.JComboBox;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JList;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JSeparator;
+import javax.swing.ImageIcon;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JRadioButtonMenuItem;
 
 public class StudentInfo extends JFrame
 {
@@ -45,6 +57,7 @@ public class StudentInfo extends JFrame
 				try
 				{
 					StudentInfo frame = new StudentInfo();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e)
 				{
@@ -62,6 +75,10 @@ public class StudentInfo extends JFrame
 	private JTextField tfGrade;
 	private JComboBox cbName;
 	private JTextField tfId;
+	private DefaultListModel<String> model;
+	private JList<String> list;
+	private JTextField tfSearch;
+	private JComboBox<String> cbCategory;
 
 	/**
 	 * Create the frame.
@@ -72,7 +89,66 @@ public class StudentInfo extends JFrame
 
 		connection = DbConnection.dbConnector();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 715, 503);
+		setBounds(100, 100, 715, 525);
+		
+		JMenuBar menuBar = new JMenuBar();
+		setJMenuBar(menuBar);
+		
+		JMenu mnNewMenu = new JMenu("File");
+		menuBar.add(mnNewMenu);
+		
+		JMenu mnNewMenu_1 = new JMenu("New");
+		mnNewMenu.add(mnNewMenu_1);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Java Project");
+		mnNewMenu_1.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Project");
+		mnNewMenu_1.add(mntmNewMenuItem_1);
+		
+		JMenuItem mntmNewMenuItem_2 = new JMenuItem("Open File...");
+		mntmNewMenuItem_2.setIcon(new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\images\\open.png"));
+		mnNewMenu.add(mntmNewMenuItem_2);
+		
+		JSeparator separator = new JSeparator();
+		mnNewMenu.add(separator);
+		
+		JMenuItem mntmNewMenuItem_3 = new JMenuItem("Close");
+		mnNewMenu.add(mntmNewMenuItem_3);
+		
+		JMenuItem mntmNewMenuItem_4 = new JMenuItem("Close All");
+		mnNewMenu.add(mntmNewMenuItem_4);
+		
+		JSeparator separator_1 = new JSeparator();
+		mnNewMenu.add(separator_1);
+		
+		JMenuItem mntmNewMenuItem_5 = new JMenuItem("Exit");
+		mntmNewMenuItem_5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(JOptionPane.showConfirmDialog(null, "정말 나갈까요?", "나가기", 
+						JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE) 
+						== JOptionPane.OK_OPTION) {					
+					System.exit(0);
+				}
+			}
+		});
+		mntmNewMenuItem_5.setIcon(new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\images\\exit.png"));
+		mnNewMenu.add(mntmNewMenuItem_5);
+		
+		JMenu mnNewMenu_2 = new JMenu("Edit");
+		menuBar.add(mnNewMenu_2);
+		
+		JMenu mnNewMenu_3 = new JMenu("Source");
+		menuBar.add(mnNewMenu_3);
+		
+		JCheckBoxMenuItem chckbxmntmNewCheckItem = new JCheckBoxMenuItem("Check Menu");
+		mnNewMenu_3.add(chckbxmntmNewCheckItem);
+		
+		JRadioButtonMenuItem rdbtnmntmNewRadioItem = new JRadioButtonMenuItem("Radio Menu");
+		mnNewMenu_3.add(rdbtnmntmNewRadioItem);
+		
+		JMenu mnNewMenu_4 = new JMenu("Help");
+		menuBar.add(mnNewMenu_4);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -134,49 +210,49 @@ public class StudentInfo extends JFrame
 		scrollPane.setViewportView(table);
 		
 		JLabel lblNewLabel = new JLabel("username");
-		lblNewLabel.setBounds(23, 141, 68, 15);
+		lblNewLabel.setBounds(23, 134, 68, 15);
 		contentPane.add(lblNewLabel);
 		
 		tfUserName = new JTextField();
-		tfUserName.setBounds(106, 138, 137, 21);
+		tfUserName.setBounds(106, 131, 137, 21);
 		contentPane.add(tfUserName);
 		tfUserName.setColumns(10);
 		
 		JLabel lblPassword = new JLabel("password");
-		lblPassword.setBounds(23, 176, 68, 15);
+		lblPassword.setBounds(23, 162, 68, 15);
 		contentPane.add(lblPassword);
 		
 		tfPassword = new JTextField();
 		tfPassword.setColumns(10);
-		tfPassword.setBounds(106, 173, 137, 21);
+		tfPassword.setBounds(106, 159, 137, 21);
 		contentPane.add(tfPassword);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("age");
-		lblNewLabel_1_1.setBounds(23, 214, 68, 15);
+		lblNewLabel_1_1.setBounds(23, 190, 68, 15);
 		contentPane.add(lblNewLabel_1_1);
 		
 		tfAge = new JTextField();
 		tfAge.setColumns(10);
-		tfAge.setBounds(106, 211, 137, 21);
+		tfAge.setBounds(106, 187, 137, 21);
 		contentPane.add(tfAge);
 		
 		JLabel lblNewLabel_1_2 = new JLabel("dept");
-		lblNewLabel_1_2.setBounds(23, 255, 68, 15);
+		lblNewLabel_1_2.setBounds(23, 218, 68, 15);
 		contentPane.add(lblNewLabel_1_2);
 		
 		tfDept = new JTextField();
 		tfDept.setColumns(10);
-		tfDept.setBounds(106, 252, 137, 21);
+		tfDept.setBounds(106, 215, 137, 21);
 		contentPane.add(tfDept);
 		
 		JLabel lblNewLabel_1_3 = new JLabel("grade");
 		lblNewLabel_1_3.setToolTipText("g");
-		lblNewLabel_1_3.setBounds(23, 290, 68, 15);
+		lblNewLabel_1_3.setBounds(23, 246, 68, 15);
 		contentPane.add(lblNewLabel_1_3);
 		
 		tfGrade = new JTextField();
 		tfGrade.setColumns(10);
-		tfGrade.setBounds(106, 287, 137, 21);
+		tfGrade.setBounds(106, 243, 137, 21);
 		contentPane.add(tfGrade);
 		
 		JButton btnNewButton = new JButton("Save");
@@ -206,7 +282,7 @@ public class StudentInfo extends JFrame
 				refreshTable();
 			}
 		});
-		btnNewButton.setBounds(65, 367, 91, 23);
+		btnNewButton.setBounds(12, 274, 79, 23);
 		contentPane.add(btnNewButton);
 		
 		JButton btnUpdate = new JButton("Update");
@@ -237,23 +313,26 @@ public class StudentInfo extends JFrame
 				refreshTable();
 			}
 		});
-		btnUpdate.setBounds(65, 400, 91, 23);
+		btnUpdate.setBounds(12, 307, 79, 23);
 		contentPane.add(btnUpdate);
 		
 		JButton btnDelete = new JButton("Delete");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			    try {
-			    	String id = JOptionPane.showInputDialog(this, "번호 선택");
-					String sql = "DELETE FROM studentinfo WHERE id = ?" ;
-					PreparedStatement pstmt = connection.prepareStatement(sql);
-					pstmt.setString(1, id);
-										
-					pstmt.execute();
-					
-					JOptionPane.showMessageDialog(null, "Data Deleted");
-					
-					pstmt.close();
+				    	int action = JOptionPane.showConfirmDialog(null, "정말 삭제할까요?", "삭제하기", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+				    	if(action == JOptionPane.YES_OPTION) {
+						String id = tfId.getText();
+				    	String sql = "DELETE FROM studentinfo WHERE id = ?" ;
+						PreparedStatement pstmt = connection.prepareStatement(sql);
+						pstmt.setString(1, id);
+											
+						pstmt.execute();
+						
+						JOptionPane.showMessageDialog(null, "Data Deleted");
+						
+						pstmt.close();
+			    	}
 	
 				} 
 			    catch (Exception e2)
@@ -261,10 +340,13 @@ public class StudentInfo extends JFrame
 					e2.printStackTrace();
 				}
 			    
-			    refreshTable();
+			    refreshTable();				// 테이블 갱신 
+			    fillComboBox();				// 콤보박스 정보 갱신
+				loadList();  				// 리스트 정보 갱신 
+			    
 			}
 		});
-		btnDelete.setBounds(65, 433, 91, 23);
+		btnDelete.setBounds(12, 340, 79, 23);
 		contentPane.add(btnDelete);
 		
 		cbName = new JComboBox();
@@ -312,8 +394,56 @@ public class StudentInfo extends JFrame
 		contentPane.add(tfId);
 		tfId.setColumns(10);
 		
+		list = new JList<>();
+		list.setBounds(106, 274, 137, 182);
+		contentPane.add(list);
+		
+		tfSearch = new JTextField();
+		tfSearch.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				try {			    	
+					String category = (String) cbCategory.getSelectedItem();
+					String search = tfSearch.getText();
+					String sql = "SELECT * FROM studentinfo WHERE " + category + " like ?" ; // (주의!!) MySQL과 Oracle이 사용법이 다름 
+					PreparedStatement pstmt = connection.prepareStatement(sql);
+					pstmt.setString(1, "%" + search + "%");
+										
+					ResultSet rs = pstmt.executeQuery();
+
+					setTablefromDB(rs);
+					
+					pstmt.close();
+					rs.close();	
+	
+				} 
+			    catch (Exception e1)
+				{
+					e1.printStackTrace();
+				}
+			}
+		});
+		tfSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		tfSearch.setBounds(172, 23, 262, 21);
+		contentPane.add(tfSearch);
+		tfSearch.setColumns(10);
+		
+		JButton btnNewButton_1 = new JButton("Search");
+		btnNewButton_1.setBounds(446, 22, 91, 23);
+		contentPane.add(btnNewButton_1);
+		
+		cbCategory = new JComboBox();
+		cbCategory.setModel(new DefaultComboBoxModel(new String[] {"id", "username", "password", "age", "dept", "grade"}));
+		cbCategory.setBounds(23, 22, 137, 23);
+		contentPane.add(cbCategory);
+		
 		refreshTable();				// 테이블 정보 갱신
 		fillComboBox();				// 콤보박스 정보 갱신
+		loadList();  				// 리스트 정보 갱신 
 	}
 
 	//====================================================
@@ -375,6 +505,7 @@ public class StudentInfo extends JFrame
 	{
 		try
 		{
+			cbName.removeAllItems();
 			String sql = "SELECT * FROM studentinfo";
 			PreparedStatement pstmt = connection.prepareStatement(sql);
 			ResultSet rs = pstmt.executeQuery();
@@ -383,6 +514,34 @@ public class StudentInfo extends JFrame
 			{
 				cbName.addItem(rs.getString("username"));
 			}			
+			
+			pstmt.close();
+			rs.close();
+		} 
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	//====================================================
+	// 리스트 채우기 
+	//====================================================
+	public void loadList()
+	{
+		try
+		{
+			String sql = "SELECT * FROM studentinfo";
+			PreparedStatement pstmt = connection.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery();			
+			model = new DefaultListModel<>();
+			
+			while(rs.next())
+			{
+				model.addElement(rs.getString("username"));
+			}			
+			
+			list.setModel(model);
 			
 			pstmt.close();
 			rs.close();
