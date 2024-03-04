@@ -1,4 +1,4 @@
-package lambda.function;
+package lambda.basic;
 
 @FunctionalInterface
 public interface MyFunction2 {

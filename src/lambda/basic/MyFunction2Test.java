@@ -1,4 +1,4 @@
-package lambda.function;
+package lambda.basic;
 
 public class MyFunction2Test {
     public static void main(String[] args) {

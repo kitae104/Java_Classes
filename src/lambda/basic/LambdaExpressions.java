@@ -3,7 +3,7 @@ package lambda.basic;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LamdaExpressions
+public class LambdaExpressions
 {
 	public static void main(String[] args)
 	{
