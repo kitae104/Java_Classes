@@ -8,8 +8,9 @@ public class LambdaPredicate {
         Function<String, Integer> f = (s) -> Integer.parseInt(s, 16);
         Function<Integer, String> g = (i) -> Integer.toBinaryString(i);
 
-        Function<String, String> h = f.andThen(g);
-        Function<Integer, Integer> h2 = f.compose(g);
+        // 함수를 연결하기 위해서는 입력과 출력을 확인 해야 한다.
+        Function<String, String> h = f.andThen(g);          // f를 먼저 수행하고 g를 수행
+        Function<Integer, Integer> h2 = f.compose(g);       // g를 먼저 수행하고 f를 수행
 
         System.out.println(h.apply("FF"));   // "FF" -> 255 -> "11111111"
         System.out.println(h2.apply(2));     // 2 -> "10" -> 16
