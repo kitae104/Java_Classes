@@ -30,6 +30,7 @@ public class TextAreaEx extends JFrame
 	{
 		EventQueue.invokeLater(new Runnable()
 		{
+			
 			public void run()
 			{
 				try
