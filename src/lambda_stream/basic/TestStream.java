@@ -1,4 +1,4 @@
-package collections.stream.basic;
+package lambda_stream.basic;
 
 import java.util.Comparator;
 import java.util.List;

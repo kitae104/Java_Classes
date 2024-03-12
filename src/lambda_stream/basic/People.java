@@ -1,4 +1,4 @@
-package collections.stream.basic;
+package lambda_stream.basic;
 
 import java.util.Arrays;
 import java.util.List;

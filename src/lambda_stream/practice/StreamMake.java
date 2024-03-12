@@ -1,9 +1,8 @@
-package collections.stream.practice;
+package lambda_stream.practice;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -40,12 +39,14 @@ public class StreamMake
 		stream.forEach(System.out::println);
 		//int numOfStr= (int) stream.count();
 		
-		// 최종 연산 전까지 중간연산이 수행되지 않는다.
+		// 최종 연산 전까지 중간연산이 수행되지 않는다.(Lazy 연산 수행)
 		IntStream intStream2 = new Random().ints(1, 46);
 		intStream2.distinct().limit(6).sorted().forEach(i -> System.out.print(i + ", "));
-		
-		// 스트림의 작업을 병렬로 처리
-		
-		// 기본형 스트림 - IntStream, LongStream, DoubleStream
+		System.out.println();
+
+		// 스트림은 작업을 병렬로 처리
+		Stream<String> strStream2 = Stream.of("dd", "aaa", "CC", "cc", "b");
+		int sum = strStream2.parallel().mapToInt(s -> s.length()).sum();	// 모든 문자열의 길이의 합
+		System.out.println("모든 문자열의 길이의 합 : " + sum);
 	}
 }
