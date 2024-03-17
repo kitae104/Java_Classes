@@ -1,4 +1,4 @@
-package inheritances;
+package inheritances.basic;
 
 public class B extends A {
     private int b;

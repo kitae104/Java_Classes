@@ -1,4 +1,4 @@
-package override;
+package inheritances.override;
 
 public class MainShape {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package override;
+package inheritances.override;
 
 public class Line extends Shape {
 

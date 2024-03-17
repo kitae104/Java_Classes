@@ -1,4 +1,4 @@
-package override;
+package inheritances.override;
 
 import lombok.*;
 

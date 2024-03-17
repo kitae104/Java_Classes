@@ -1,4 +1,4 @@
-package inheritances;
+package inheritances.basic;
 
 import lombok.*;
 
