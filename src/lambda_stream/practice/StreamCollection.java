@@ -3,6 +3,7 @@ package lambda_stream.practice;
 import java.beans.Introspector;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -36,7 +37,22 @@ public class StreamCollection {
 //        intStream1.forEach(System.out::print);              // 마지막 연산
 //        System.out.println();
 
-        // 3. 스트림 만들기
+        // 3. 난수 요소를 갖는 스트림 생성하기
+        IntStream intStream2 = new Random().ints();                 // 랜덤 무한 스트림
+        intStream2.limit(5).forEach(System.out::println);  // 5개 제한
+
+        IntStream intStream3 = new Random().ints(5);    // 5개의 랜덤 스트림
+        intStream3.forEach(System.out::println);
+
+        // 4. 특정 범위의 정수 스트림 생성하기
+        IntStream intStream4 = IntStream.range(1, 5);    // 1~4 끝을 포함하지 않음
+        intStream4.forEach(System.out::print);
+        System.out.println();
+
+        IntStream intStream5 = IntStream.rangeClosed(1, 5);    // 1~5 끝을 포함
+        intStream5.forEach(System.out::print);
+        System.out.println();
+
 
     }
 }
