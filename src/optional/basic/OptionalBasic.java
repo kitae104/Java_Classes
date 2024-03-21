@@ -18,7 +18,8 @@ public class OptionalBasic {
         if(Optional.ofNullable(s).isPresent()) {    // null이 아니면
             System.out.println(s);
         }
-        // 같은 표현
+
+        // 같은 표현(메소드 참조 사용)
         Optional.ofNullable(s).ifPresent(System.out::println);  // null이 아니면 출력
     }
 }
