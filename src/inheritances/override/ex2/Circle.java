@@ -1,4 +1,4 @@
-package inheritances.override;
+package inheritances.override.ex2;
 
 public class Circle extends Shape{
 
