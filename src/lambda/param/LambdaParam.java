@@ -8,10 +8,10 @@ public class LambdaParam {
 
     static MyFunction getMyFunction() {
         MyFunction f = () -> System.out.println("f3.run()");
-        return f;
+        return f;                                               // 람다식을 반환
     }
     public static void main(String[] args) {
-        MyFunction f1 = () -> System.out.println("f1.run()");
+        MyFunction f1 = () -> System.out.println("f1.run()");   // 람다식
 
         MyFunction f2 = new MyFunction() {
             public void run() {
@@ -19,13 +19,13 @@ public class LambdaParam {
             }
         };
 
-        MyFunction f3 = getMyFunction();
+        MyFunction f3 = getMyFunction();                // 람다식을 반환받아 실행
 
-        f1.run();
+        f1.run();                                       // 람다식 실행
         f2.run();
         f3.run();
 
-        execute(f1);
+        execute(f1);                                    // 람다식을 매개변수로 전달
         execute(() -> System.out.println("run()"));
     }
 }
