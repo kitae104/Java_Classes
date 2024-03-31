@@ -58,7 +58,7 @@ public class Student {
     public String toString() {
         return "Student{" +
                 "name='" + name + '\'' +
-                ", isMale=" + isMale ? "남":"여" +
+                ", isMale=" + (isMale ? "남":"여") +
                 ", grade=" + grade +
                 ", classNum=" + classNum +
                 ", score=" + score +

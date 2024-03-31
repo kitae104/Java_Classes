@@ -1,4 +1,4 @@
-package swing.builder.events;
+package swing.builder.components;
 
 import java.awt.EventQueue;
 
@@ -142,8 +142,8 @@ public class CheckBoxEvent extends JFrame
 		contentPane.add(rdbtnWoman);
 		
 		lblImage = new JLabel("");
-		lblImage.setIcon(new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\images\\apple.jpg"));
-		lblImage.setBounds(156, 320, 124, 165);
+		lblImage.setIcon(new ImageIcon(CheckBoxEvent.class.getResource("/swing/builder/img/apple.jpg")));
+		lblImage.setBounds(152, 309, 124, 165);
 		contentPane.add(lblImage);
 		
 		JRadioButton rdbtnNewRadioButton = new JRadioButton("사과");
