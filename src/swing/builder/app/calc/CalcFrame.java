@@ -64,9 +64,9 @@ public class CalcFrame extends JFrame
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("Kitae's CALCULATOR");
+		JLabel lblNewLabel = new JLabel("김기태의 계산기");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setFont(new Font("Verdana", Font.BOLD, 20));
+		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lblNewLabel.setBounds(12, 350, 541, 56);
 		contentPane.add(lblNewLabel);
 		

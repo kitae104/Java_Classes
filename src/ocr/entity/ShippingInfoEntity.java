@@ -1,14 +1,16 @@
 package ocr.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-
 import java.time.LocalDateTime;
 
-@Data
-@ToString(exclude = "addressEntity")
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+//@ToString(exclude = "addressEntity")
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShippingInfoEntity {
