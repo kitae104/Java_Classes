@@ -11,6 +11,8 @@ public class HYTimeTable {
 	}
 
 	public HYTimeTable() {
+		// 배열 초기화 하라고 하지만 특별히 안해도 initailize 메소드에서 초기화를 해주기 때문에
+		// 따로 초기화는 하지 않아도 됨(이건 사람들한테 물어봐).
 		initialize();
 	}
 
@@ -33,7 +35,7 @@ public class HYTimeTable {
 
 	public String getSchedule(String day, int period) {
 		int col = DAYS.valueOf(day).ordinal();			// 요일 enum을 이용하여 index값을 가져옴
-		int row = period -9;
+		int row = period -9;							// 9교시부터 시작하기 때문에 9를 빼줌
 
 		return "At that time you have : "  + timeTable[col][row].getDetails() + "\n" + toString();
  	}
@@ -42,9 +44,13 @@ public class HYTimeTable {
 		// 원본 행렬은 5 X 11 인데 출력할때와 입력할 때 행과 열이 바뀌어서 출력되기 때문에 col과 row를 바꿔줌
 		int col = DAYS.valueOf(day).ordinal();			// 요일 enum을 이용하여 index값을 가져옴
 		int row = period -9;							// 9교시부터 시작하기 때문에 9를 빼줌
-		if(timeTable[col][row].isValid()) {				// 해당 시간에 과목이 없을 경우
-			timeTable[col][row] = new Course(name, tutor, room);	// 과목 객체 생성 (따로 setter가 없어 생성자로 초기화)
-			timeTable[col][row].setValid(false);					// 값을 채워 넣었기 때문에 유효성을 false로 변경
+
+		if(timeTable[col][row].isValid()) {				// 해당 시간에 과목이 없을 경우(해당 슬롯이 비었는지 확인 필요!!!)
+
+			timeTable[col][row] = new Course(name, tutor, room);	// 간단히 생성자를 사용하면 편하지만 이렇게 하면 쓰레기 발생
+//			timeTable[col][row].setName(name);			// 과목명 설정 - 이렇게 하기 위해서는 따로 setter를 추가해야 함
+//			timeTable[col][row].setState(tutor, room);	// 교수명, 강의실 이름 설정
+			timeTable[col][row].setValid(false);		// 값을 채워 넣었기 때문에 유효성을 false로 변경
 			return true;
 		}
 		return false;
@@ -52,14 +58,18 @@ public class HYTimeTable {
 	public boolean deleteSchedule(String day, int period) {
 		int col = DAYS.valueOf(day).ordinal();			// 요일 enum을 이용하여 index값을 가져옴
 		int row = period -9;							// 9교시부터 시작하기 때문에 9를 빼줌
-		if(!timeTable[col][row].isValid()) {				// 해당 시간에 과목이 없을 경우
-			timeTable[col][row] = new Course("----");		// 과목 객체 생성 (따로 setter가 없어 생성자로 초기화)
+		if(!timeTable[col][row].isValid()) {			// 해당 시간에 과목이 없을 경우
+			if(row == 3 || row == 8) {					// 12시와 17시는 점심시간과 저녁시간으로 고정되어 있기 때문에 삭제 불가능
+				return false;
+			}
+			timeTable[col][row] = new Course("----");		// 과목 객체 생성 - 이렇게 하면 쓰레기 발생(위와 같은 이유)
 			timeTable[col][row].setValid(true);						// 값을 지웠기 때문에 입력 가능하다는 의미로 유효성을 true로 변경
 			return true;
 		}
 		return false;
 	}
 
+	// 전체 시간표를 출력하는 메소드(보통 위에서 필요한 내용 출력후 시간표 상태를 확인하기 위해 마지막에 호출)
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
 		String[] weeks = { "  ", "\tMONDAY", "\tTUESDAY", "\tWEDNESDAY", "THURSDAY", "FRIDAY"};
