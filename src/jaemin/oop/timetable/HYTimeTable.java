@@ -76,13 +76,14 @@ public class HYTimeTable {
 		for (int i = 0; i < timeTable[0].length + 1; i++) {
 			for (int j = 0; j < timeTable.length+ 1; j++) {
 				if (i == 0) {
-					sb.append(weeks[j] + "\t");
+					sb.append(String.format("%20s", weeks[j]));
 				}
 				else if(j == 0) {
 					sb.append((i+8) + "\t\t");
 				}
 				else
-					sb.append(timeTable[j-1][i-1].getName() + "\t\t");
+					sb.append(String.format("%20s", timeTable[j-1][i-1].getName()));
+					//sb.append(timeTable[j-1][i-1].getName() + "\t\t");
 
 			}
 			sb.append("\n");
