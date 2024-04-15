@@ -72,17 +72,22 @@ public class HYTimeTable {
 	// 전체 시간표를 출력하는 메소드(보통 위에서 필요한 내용 출력후 시간표 상태를 확인하기 위해 마지막에 호출)
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		String[] weeks = { "  ", "\tMONDAY", "\tTUESDAY", "\tWEDNESDAY", "THURSDAY", "FRIDAY"};
+		String[] weeks = {"","MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY"};
 		for (int i = 0; i < timeTable[0].length + 1; i++) {
 			for (int j = 0; j < timeTable.length+ 1; j++) {
 				if (i == 0) {
-					sb.append(String.format("%20s", weeks[j]));
+					if(j==0){
+						sb.append(String.format("%2s", ""));
+					}
+					else{
+						sb.append(String.format("%15s", weeks[j]));
+					}
 				}
 				else if(j == 0) {
-					sb.append((i+8) + "\t\t");
+					sb.append(String.format("%2s", (i+8)));
 				}
 				else
-					sb.append(String.format("%20s", timeTable[j-1][i-1].getName()));
+					sb.append(String.format("%15s", timeTable[j-1][i-1].getName()));
 					//sb.append(timeTable[j-1][i-1].getName() + "\t\t");
 
 			}
