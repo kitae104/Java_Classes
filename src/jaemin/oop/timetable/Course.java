@@ -71,17 +71,4 @@ public class Course {
 		return toString() + getState();
 		//return "\nName : " + name + "\nProfessor : " + professor + "\nRoom : " + roomNumber;
 	}
-
-
-	// 과목이 설정될 때 해당 필드를 false로 변경하여 해당 위치에 다른 과목을 등록하지 못하게 함
-	public void setValid(boolean b) {
-		this.isValid = b;
-	}
-
-	// 현재 시간표가 유효한지 확인(일반적으로는 true이고 해당 위치에 과목이 있는 경우 false 반환)
-	public boolean isValid() {
-		return isValid;
-	}
-
-
 }

@@ -21,13 +21,13 @@ public class HYTimeTable {
 			for (int j = 0; j < timeTable[0].length; j++) {
 				if(j == 3) {    										// 12시는 점심시간으로 고정
 					timeTable[i][j] = new Course("LUNCH");
-					timeTable[i][j].setValid(false);
+					timeTable[i][j].isValid = false;
 				} else if(j == 8){										// 6시는 저녁시간으로 고정
 					timeTable[i][j] = new Course("DINNER");
-					timeTable[i][j].setValid(false);
+					timeTable[i][j].isValid = false;
 				} else {
 					timeTable[i][j] = new Course("----");
-					timeTable[i][j].setValid(true);
+					timeTable[i][j].isValid = true;
 				}
 			}
 		}
@@ -45,12 +45,12 @@ public class HYTimeTable {
 		int col = DAYS.valueOf(day).ordinal();			// 요일 enum을 이용하여 index값을 가져옴
 		int row = period -9;							// 9교시부터 시작하기 때문에 9를 빼줌
 
-		if(timeTable[col][row].isValid()) {				// 해당 시간에 과목이 없을 경우(해당 슬롯이 비었는지 확인 필요!!!)
+		if(timeTable[col][row].isValid) {				// 해당 시간에 과목이 없을 경우(해당 슬롯이 비었는지 확인 필요!!!)
 
 			timeTable[col][row] = new Course(name, tutor, room);	// 간단히 생성자를 사용하면 편하지만 이렇게 하면 쓰레기 발생
 //			timeTable[col][row].setName(name);			// 과목명 설정 - 이렇게 하기 위해서는 따로 setter를 추가해야 함
 //			timeTable[col][row].setState(tutor, room);	// 교수명, 강의실 이름 설정
-			timeTable[col][row].setValid(false);		// 값을 채워 넣었기 때문에 유효성을 false로 변경
+			timeTable[col][row].isValid = false;		// 값을 채워 넣었기 때문에 유효성을 false로 변경
 			return true;
 		}
 		return false;
@@ -58,12 +58,12 @@ public class HYTimeTable {
 	public boolean deleteSchedule(String day, int period) {
 		int col = DAYS.valueOf(day).ordinal();			// 요일 enum을 이용하여 index값을 가져옴
 		int row = period -9;							// 9교시부터 시작하기 때문에 9를 빼줌
-		if(!timeTable[col][row].isValid()) {			// 해당 시간에 과목이 없을 경우
+		if(!timeTable[col][row].isValid) {			// 해당 시간에 과목이 없을 경우
 			if(row == 3 || row == 8) {					// 12시와 17시는 점심시간과 저녁시간으로 고정되어 있기 때문에 삭제 불가능
 				return false;
 			}
 			timeTable[col][row] = new Course("----");		// 과목 객체 생성 - 이렇게 하면 쓰레기 발생(위와 같은 이유)
-			timeTable[col][row].setValid(true);						// 값을 지웠기 때문에 입력 가능하다는 의미로 유효성을 true로 변경
+			timeTable[col][row].isValid =true;						// 값을 지웠기 때문에 입력 가능하다는 의미로 유효성을 true로 변경
 			return true;
 		}
 		return false;
