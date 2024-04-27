@@ -1,4 +1,4 @@
-package swing.builder.app;
+package swing.builder.app.editor;
 
 import java.awt.EventQueue;
 
@@ -11,16 +11,28 @@ import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.awt.event.ActionEvent;
 
 public class MyEditor
 {
 
 	private JFrame frmMyeditorVer;
+	private JTextArea ta;
 
 	/**
 	 * Launch the application.
@@ -70,10 +82,22 @@ public class MyEditor
 		toolBar.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openFile();
+			}
+
+			
+		});
 		btnNewButton_1.setIcon(new ImageIcon(MyEditor.class.getResource("/swing/builder/img/open.png")));
 		toolBar.add(btnNewButton_1);
 		
 		JButton btnNewButton_2 = new JButton("");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				saveFile();
+			}
+		});
 		btnNewButton_2.setIcon(new ImageIcon(MyEditor.class.getResource("/swing/builder/img/save.png")));
 		toolBar.add(btnNewButton_2);
 				
@@ -88,7 +112,7 @@ public class MyEditor
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		frmMyeditorVer.getContentPane().add(scrollPane, BorderLayout.CENTER);
 		
-		JTextArea ta = new JTextArea();
+		ta = new JTextArea();
 		ta.setFont(new Font("Monospaced", Font.PLAIN, 16));
 		scrollPane.setViewportView(ta);
 		
@@ -104,9 +128,21 @@ public class MyEditor
 		mnNewMenu.add(mnitNew);
 		
 		JMenuItem mnitOpen = new JMenuItem("Open");
+		mnitOpen.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				openFile();
+			}
+		});
 		mnNewMenu.add(mnitOpen);
 		
 		JMenuItem mnitSave = new JMenuItem("Save");
+		mnitSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				saveFile();		
+			}
+
+			
+		});
 		mnNewMenu.add(mnitSave);
 		
 		JSeparator separator = new JSeparator();
@@ -125,4 +161,69 @@ public class MyEditor
 		mnNewMenu_2.add(mnitProgInfo);
 	}
 
+	private void openFile()
+	{
+		JFileChooser fc = new JFileChooser();
+		File currentDirectory = new File(".");
+		fc.setCurrentDirectory(currentDirectory);
+		
+		fc.addChoosableFileFilter(new FileNameExtensionFilter("Java", "java"));
+		fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
+		fc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
+		fc.setAcceptAllFileFilterUsed(true);
+		
+		fc.showOpenDialog(null);
+		
+		File in = fc.getSelectedFile();
+		BufferedReader br = null;
+		String line = null;
+	
+		try {				
+			br = new BufferedReader(new FileReader(in));				
+			while((line = br.readLine()) != null) {
+				ta.append(line + "\n");
+			}
+		} catch (FileNotFoundException e1) {				
+			e1.printStackTrace();
+		} catch (IOException e1) {				
+			e1.printStackTrace();
+		} finally {
+			try {					
+				br.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
+	
+	private void saveFile()
+	{
+		JFileChooser fc = new JFileChooser();
+		fc.addChoosableFileFilter(new FileNameExtensionFilter("PDF", "pdf"));
+		fc.addChoosableFileFilter(new FileNameExtensionFilter("TEXT", "txt"));
+		fc.addChoosableFileFilter(new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp"));
+		
+		fc.showSaveDialog(null);
+		
+		File out = fc.getSelectedFile();
+		BufferedWriter bw = null;			
+	
+		try {				
+			bw = new BufferedWriter(new FileWriter(out));	
+			String str = ta.getText();
+			str = str.replace("\n", System.getProperty("line.separator"));
+			bw.write(str);
+			
+		} catch (FileNotFoundException e1) {				
+			e1.printStackTrace();
+		} catch (IOException e1) {				
+			e1.printStackTrace();
+		} finally {
+			try {					
+				bw.close();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		}
+	}
 }

@@ -1,4 +1,4 @@
-package file;
+package file.classes;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

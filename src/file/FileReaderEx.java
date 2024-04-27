@@ -9,7 +9,7 @@ public class FileReaderEx
 
 	public static void main(String[] args) throws IOException
 	{
-		FileReader fr = new FileReader("src/file/FileOutputStreamEx.java");
+		FileReader fr = new FileReader("C:/Temp/file.txt");
 		int readCharNo;
 		
 		char[] cBuf = new char[100];
