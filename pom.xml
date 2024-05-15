@@ -24,8 +24,9 @@
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
-			<version>1.14.2</version>
+			<version>1.17.2</version>
 		</dependency>
+
 
 		<!-- rsyntaxtextarea -->
 		<dependency>
@@ -34,18 +35,11 @@
 			<version>3.4.0</version>
 		</dependency>
 
-		<!-- json-simple -->
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
-
 		<!-- mysql -->
 		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-			<version>8.0.29</version>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>8.4.0</version>
 		</dependency>
 
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
@@ -55,14 +49,6 @@
 			<version>20231013</version>
 		</dependency>
 
-
-		<!--
-		https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
-		<dependency>
-			<groupId>com.googlecode.json-simple</groupId>
-			<artifactId>json-simple</artifactId>
-			<version>1.1.1</version>
-		</dependency>
 	</dependencies>
 
 </project>

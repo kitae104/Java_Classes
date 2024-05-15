@@ -8,8 +8,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import javafx.scene.control.skin.LabelSkin;
-
 import java.awt.Font;
 import java.awt.Color;
 

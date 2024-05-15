@@ -13,8 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import oracle.net.aso.l;
-
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import java.awt.Font;
