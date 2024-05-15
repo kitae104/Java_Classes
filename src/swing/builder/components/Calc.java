@@ -7,6 +7,9 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
+
+import javafx.scene.control.skin.LabelSkin;
+
 import java.awt.Font;
 import java.awt.Color;
 
@@ -183,4 +186,5 @@ public class Calc {
 		lblNewLabel.setBounds(12, 324, 428, 51);
 		frame.getContentPane().add(lblNewLabel);
 	}
+	
 }
