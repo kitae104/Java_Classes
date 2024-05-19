@@ -171,7 +171,7 @@ public class StudentInfo extends JFrame
 		scrollPane.setBounds(255, 64, 434, 392);
 		contentPane.add(scrollPane);
 
-		table = new JTable(tableModel);
+		table = new JTable(tableModel);		// 테이블에 데이터를 관리하기 위한 모델 장작
 		table.addMouseListener(new MouseAdapter() {
 			
 			@Override
@@ -433,6 +433,10 @@ public class StudentInfo extends JFrame
 		tfSearch.setColumns(10);
 		
 		JButton btnNewButton_1 = new JButton("Search");
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnNewButton_1.setBounds(446, 22, 91, 23);
 		contentPane.add(btnNewButton_1);
 		
@@ -442,7 +446,9 @@ public class StudentInfo extends JFrame
 		contentPane.add(cbCategory);
 		
 		refreshTable();				// 테이블 정보 갱신
+		
 		fillComboBox();				// 콤보박스 정보 갱신
+		
 		loadList();  				// 리스트 정보 갱신 
 	}
 
@@ -453,7 +459,7 @@ public class StudentInfo extends JFrame
 	{
 		ResultSetMetaData metaData = rs.getMetaData();
 
-		// Names of columns
+		// 컬럼 이름들
 		Vector<String> columnNames = new Vector<String>();
 		int columnCount = metaData.getColumnCount();
 		for (int i = 1; i <= columnCount; i++)
@@ -461,7 +467,7 @@ public class StudentInfo extends JFrame
 			columnNames.add(metaData.getColumnName(i));
 		}
 
-		// Data of the table
+		// 테이블 데이터
 		Vector<Vector<Object>> data = new Vector<Vector<Object>>();
 		while (rs.next())
 		{
@@ -473,7 +479,7 @@ public class StudentInfo extends JFrame
 			data.add(vector);
 		}
 
-		tableModel.setDataVector(data, columnNames);
+		tableModel.setDataVector(data, columnNames);	// 모델에 데이터를 설정하여 테이블 내용 변경 
 	}
 	
 	//====================================================
