@@ -73,7 +73,7 @@ public class StudentInfo extends JFrame
 	private JTextField tfAge;
 	private JTextField tfDept;
 	private JTextField tfGrade;
-	private JComboBox cbName;
+	private JComboBox<String> cbName;
 	private JTextField tfId;
 	private DefaultListModel<String> model;
 	private JList<String> list;
@@ -280,6 +280,8 @@ public class StudentInfo extends JFrame
 				}
 				
 				refreshTable();
+				fillComboBox();
+				loadList();
 			}
 		});
 		btnNewButton.setBounds(12, 274, 79, 23);
@@ -349,7 +351,7 @@ public class StudentInfo extends JFrame
 		btnDelete.setBounds(12, 340, 79, 23);
 		contentPane.add(btnDelete);
 		
-		cbName = new JComboBox();
+		cbName = new JComboBox<>();
 		cbName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {			    	
