@@ -6,7 +6,7 @@ import java.util.Vector;
 
 public class VectorGeneric {
     public static void main(String[] args) {
-
+    	
         Vector<Integer> vec = new Vector<>();
         vec.add(1);
         vec.add(3);
@@ -23,7 +23,7 @@ public class VectorGeneric {
         Vector<String> vecStr = new Vector<>(3);
         vecStr.add("A");
         vecStr.add("B");
-        vecStr.add("C");
+        vecStr.add("1");
 
         vecStr.add(1, "홍길동");
         System.out.println("capacity : " + vecStr.capacity());

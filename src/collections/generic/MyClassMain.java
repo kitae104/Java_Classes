@@ -3,9 +3,13 @@ package collections.generic;
 import collections.vector.Family;
 
 import java.util.Stack;
+import java.util.Vector;
 
 public class MyClassMain {
     public static void main(String[] args) {
+    	
+    	
+    	
         MyClass<Integer> iMyClass = new MyClass<>();
         iMyClass.setValue(10);
         System.out.println(iMyClass.getValue());
