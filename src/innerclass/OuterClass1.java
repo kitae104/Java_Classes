@@ -2,12 +2,13 @@ package innerclass;
 
 public class OuterClass1
 {
-	private int x = 10;
+	private int y = 10;
 	
 	// 멤버 내부 클래스 
     public class InnerClass1 {
+    	private int x = 20;
         public void printX() {
-            System.out.println(x);
+            System.out.println(y);
         }
     }
 
