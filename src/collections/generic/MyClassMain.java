@@ -11,7 +11,7 @@ public class MyClassMain {
     	
     	
         MyClass<Integer> iMyClass = new MyClass<>();
-        iMyClass.setValue(10);
+        iMyClass.setValue(Integer.valueOf(10));
         System.out.println(iMyClass.getValue());
 
         MyClass<String> sMyClass = new MyClass<>();
