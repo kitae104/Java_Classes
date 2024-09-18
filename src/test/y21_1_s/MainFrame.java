@@ -26,7 +26,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		setSize(width, height);
 		setLocation(300, 200); 
 		//setLocationRelativeTo(this);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 		// 메뉴 추가 
 		makeMenu();

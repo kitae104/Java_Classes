@@ -35,3 +35,4 @@ replay_pid*
 .factorypath
 Java_Classes.iml
 .idea/misc.xml
+/src/test
