@@ -1,5 +1,6 @@
 package jaemin.collection;
 
+import java.util.Collections;
 import java.util.Vector;
 
 public class VectorEx {
@@ -18,5 +19,18 @@ public class VectorEx {
         for (String s : v1) {
             System.out.println(s);
         }
+
+        Collections.reverse(v1);
+        System.out.println(v1);
+
+        Collections.sort(v1);
+        System.out.println(v1);
+
+        Collections.reverse(v1);
+        System.out.println(v1);
+
+        int i = Collections.binarySearch(v1, "이순신");
+        System.out.println(i);
+        System.out.println(v1.indexOf("이순신"));
     }
 }
