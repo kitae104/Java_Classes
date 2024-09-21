@@ -1,11 +1,8 @@
 package lambda.basic;
 
-import java.util.ArrayList;
-import java.util.List;
-
 // 함수형 인터페이스 타입의 매개변수사용과 반환 타입 사용
 // 람다식을 함수를 통해 전달하고 반환하는 예제
-public class LambdaExp4 {
+public class LambdaEx4 {
 
     public static void execute(MyFunction2 f) { // 매개변수 타입이 MyFunction2인 메서드
 		f.run();	// 받은 함수형 인터페이스의 추상 메서드 호출
