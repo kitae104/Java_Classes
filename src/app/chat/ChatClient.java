@@ -1,4 +1,4 @@
-package swing.builder.app.chat;
+package app.chat;
 
 import java.awt.EventQueue;
 

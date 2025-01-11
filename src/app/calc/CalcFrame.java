@@ -1,4 +1,4 @@
-package swing.builder.app.calc;
+package app.calc;
 
 import java.awt.EventQueue;
 
