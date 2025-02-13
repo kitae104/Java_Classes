@@ -1,4 +1,4 @@
-package classes;
+package classes.ex2;
 
 public class Person
 {
