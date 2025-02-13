@@ -1,7 +1,6 @@
-package swing.builder.app.db;
+package app.db;
 
 import java.awt.EventQueue;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;

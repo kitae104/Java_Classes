@@ -1,4 +1,4 @@
-package swing.builder.app.pathgame;
+package app.pathgame;
 
 import java.awt.Color;
 import java.awt.Component;
