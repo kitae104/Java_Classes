@@ -1,4 +1,4 @@
-package gui;
+package part2.gui;
 
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;

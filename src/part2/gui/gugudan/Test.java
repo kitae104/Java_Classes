@@ -1,4 +1,4 @@
-package gui.gugudan;
+package part2.gui.gugudan;
 
 import java.awt.EventQueue;
 

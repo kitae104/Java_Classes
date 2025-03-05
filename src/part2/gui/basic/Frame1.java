@@ -1,4 +1,4 @@
-package gui.basic;
+package part2.gui.basic;
 
 import java.awt.EventQueue;
 
