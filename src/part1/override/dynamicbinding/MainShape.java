@@ -22,7 +22,7 @@ public class MainShape {
         double d = 1.1;
 
         d = a;
-        a = (int)d;
-
+        a = (int)d;       
+        
     }
 }
