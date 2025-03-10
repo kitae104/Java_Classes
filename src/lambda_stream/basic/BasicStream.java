@@ -7,7 +7,7 @@ public class BasicStream {
         // 1. 컬렉션(List, Set, Map, 배열)을 스트림으로 만들기
         String[] strArr = {"dd", "aaa", "CC", "cc", "b"};
         Stream<String> stream = Stream.of(strArr);
-
+        
         // 2. 중간 연산(0 ~ n번 수행)
 //        Stream<String> filterStream = stream.filter();              // 걸러내기
 //        Stream<String> distinctedStream = stream.distinct();        // 중복제거
