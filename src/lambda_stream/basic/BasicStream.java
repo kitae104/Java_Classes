@@ -13,9 +13,11 @@ public class BasicStream {
 //        Stream<String> distinctedStream = stream.distinct();        // 중복제거
 //        Stream<String> sortedStream = stream.sort();                // 정렬
 //        Stream<String> limitedStream = stream.limit(5);  // 스트림 자르기
-
+                
         // 3. 최종 연산 (1번) -> 결과
         long total = stream.count();
         System.out.println(total);
+        
+        
     }
 }
