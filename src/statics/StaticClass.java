@@ -11,6 +11,7 @@ public class StaticClass {
     public void printA(){
         System.out.println("AAA : " + a);
     }
+    
     public static void printB(){
         System.out.println("BBB : " + b);
     }
