@@ -6,6 +6,7 @@ public class A extends Object{
     public A(int a){
         super();
         this.a = a;
+        System.out.println("생성자 A");
     }
 
 }

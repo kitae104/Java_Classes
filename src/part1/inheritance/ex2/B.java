@@ -6,5 +6,6 @@ public class B extends A {
     public B(int a, int b){
         super(a);
         this.b = b;
+        System.out.println("생성자 B");
     }
 }
