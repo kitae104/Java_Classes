@@ -36,3 +36,7 @@ replay_pid*
 Java_Classes.iml
 .idea/misc.xml
 /src/test
+
+.metadata/
+.settings/
+.settings/org.eclipse.jdt.core.prefs
