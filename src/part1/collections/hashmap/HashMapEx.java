@@ -11,8 +11,9 @@ public class HashMapEx {
         map.put("C", 3);
         Integer b = map.get("B");
         System.out.println(b);
+        System.out.println(map);
 
-        Set<String> keyset = map.keySet();
+        Set<String> keyset = map.keySet();  // 지역변수 만들기 사용 
         for (String key : keyset) {
             System.out.println(key + " : " + map.get(key));
         }
@@ -24,7 +25,7 @@ public class HashMapEx {
         map2.put(3, "C");
 
         map2.remove(1);
-
+        System.out.println(map2);
 
     }
 }

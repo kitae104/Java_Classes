@@ -1,9 +1,9 @@
 package part1.collections.generic;
 
 public class MyClass<T> {
-    private T value;
+    private T value;    
 
-    public T getValue() {
+	public T getValue() {
         return value;
     }
 

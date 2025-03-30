@@ -7,9 +7,7 @@ import java.util.Vector;
 
 public class MyClassMain {
     public static void main(String[] args) {
-    	
-    	
-    	
+    	    	    	
         MyClass<Integer> iMyClass = new MyClass<>();
         iMyClass.setValue(Integer.valueOf(10));
         System.out.println(iMyClass.getValue());
