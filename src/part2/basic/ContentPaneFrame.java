@@ -1,4 +1,4 @@
-package swing.frame;
+package part2.basic;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

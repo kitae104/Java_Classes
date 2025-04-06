@@ -1,4 +1,4 @@
-package swing.frame;
+package part2.basic;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package swing.frame;
+package part2.basic;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -9,47 +9,50 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class GridLayoutFrame extends JFrame {
+public class NoLayoutFrame extends JFrame {
 
-	public GridLayoutFrame(String title, int width, int height) {
+	public NoLayoutFrame(String title, int width, int height) {
 		setTitle(title);
 		setSize(width, height);
-		setLocation(500, 300); 
+		setLocation(1800, 300); 
 //		setLocationRelativeTo(this);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		// 레이아웃
-		setLayout(new GridLayout(4, 2, 5, 5));
-		
-		JLabel lbl = new JLabel("이름 : ");
-		add(lbl);
-		
-		JTextField tf = new JTextField();
-		add(tf);
+		setLayout(null);
+				
 		
 		JButton b1 = new JButton("1");
+		b1.setSize(50, 25);
+		b1.setLocation(10, 10);
 		add(b1);
 		
 		JButton b2 = new JButton("2");
+		b2.setSize(50, 25);
+		b2.setLocation(10, 50);
 		add(b2);
 		
 		JButton b3 = new JButton("3");
+		b3.setBounds(100, 100, 100, 20);
 		add(b3);
 		
 		JButton b4 = new JButton("4");
+		b4.setBounds(100, 50, 50, 25);
 		add(b4);
 		
 		JButton b5 = new JButton("5");
+		b5.setBounds(150, 50, 50, 25);
 		add(b5);
 		
 		JButton b6 = new JButton("6");
+		b6.setBounds(300, 200, 50, 25);
 		add(b6);
 		
 		setVisible(true);
 	}
 	
 	public static void main(String[] args) {
-		new GridLayoutFrame("GridLayout 프레임", 300, 200);
+		new NoLayoutFrame("NoLayout 프레임", 300, 200);
 	}
 
 }
