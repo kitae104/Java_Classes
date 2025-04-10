@@ -14,23 +14,8 @@ public class StudentProfile {
 
     private int id;
     private String name;
-    private String domain;
+    private String dept;
     private String address;
-    
-//    public StudentProfile(){
-//        
-//    }
-//    public StudentProfile(int id, String name, String domain, String address){
-//        this.id = id;
-//        this.name = name;
-//        this.domain = domain;
-//        this.address = address;
-//    }
-//    public StudentProfile(String name, String domain, String address){
-//        this.name = name;
-//        this.domain = domain;
-//        this.address = address;
-//    }
     
     public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -47,19 +32,34 @@ public class StudentProfile {
 			);			
 			
 			int i = sc.nextInt(); // 사용자 입력
-			
+			sc.nextLine(); 
 			switch(i) {
 				case 1:
-					System.out.println("Add Profile");
-                    System.out.println("Enter Name");
-                    String name = sc.next();	// 이름 입력
-                    System.out.println("Enter Domain");
-                    String domain = sc.next(); // 도메인 입력
-                    System.out.println("Enter Address");
-                    String address = sc.next(); // 주소 입력
+					System.out.println("프로파일 추가");
+                    System.out.print("이름 입력 : ");
+                    String name = sc.nextLine();	// 이름 입력
+                    System.out.print("학과 입력 : ");
+                    String dept = sc.nextLine(); // 도메인 입력
+                    System.out.print("주소 입력 : ");
+                    String address = sc.nextLine(); // 주소 입력                    
+//                    sc.next(); // 개행 문자 제거
                     
-                    StudentProfile sp = new StudentProfile(name, domain, address);
                     
+                    StudentProfile sp = StudentProfile.builder()
+                    		.name(name)
+                    		.dept(dept)
+                    		.address(address)
+                    		.build();
+                    
+                    AddAction addAction = new AddAction();
+                    
+                    boolean valid = addAction.add(sp); // DB에 추가
+                    
+                    if(valid) {
+						System.out.println("=== 프로파일 추가 성공");
+					} else {
+						System.out.println("=== 프로파일 추가 실패");
+					}
                     
 					break;
 				case 2:
