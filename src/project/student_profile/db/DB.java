@@ -1,4 +1,4 @@
-package project.student_profile.student.db;
+package project.student_profile.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
