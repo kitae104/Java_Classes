@@ -128,7 +128,6 @@ public class ClientMain {
 					JPanel panelText = formatLabel(msg);	// 메시지 패널
 					
 					JPanel rightPanel = new JPanel(new BorderLayout());	// 오른쪽 정렬 패널
-//					rightPanel.setBackground(new Color(128, 255, 128));
 					rightPanel.add(panelText, BorderLayout.LINE_END);	// 오른쪽 정렬 패널에 메시지 패널 추가
 					
 					messagePanel.add(rightPanel);	// 메시지 패널을 스크롤 패널에 추가
@@ -164,7 +163,6 @@ public class ClientMain {
 		lowerPanel.setLayout(new BorderLayout(0, 0));
 		
 		messagePanel = new JPanel();
-//		messagePanel.setBackground(new Color(128, 255, 128));
 		messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
 		
 		JScrollPane scrollPane = new JScrollPane(messagePanel);
@@ -182,7 +180,6 @@ public class ClientMain {
 		lblOut.setFont(new Font("", Font.PLAIN, 15));
 		lblOut.setBackground(Color.PINK);
 		lblOut.setOpaque(true);
-//        out.setBorder(new EmptyBorder(15, 15, 15, 50));
 		lblOut.setBorder(new EmptyBorder(15, 15, 15, 50));
      
         panel.add(lblOut);
