@@ -75,7 +75,6 @@ public class ServerMain {
 					server.close();
 				}
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
@@ -141,7 +140,6 @@ public class ServerMain {
 					JPanel panelText = formatLabel(msg);	// 메시지 패널
 					
 					JPanel rightPanel = new JPanel(new BorderLayout());	// 오른쪽 정렬 패널
-					//rightPanel.setBackground(new Color(128, 255, 128));
 					rightPanel.add(panelText, BorderLayout.LINE_END);	// 오른쪽 정렬 패널에 메시지 패널 추가
 					
 					messagePanel.add(rightPanel);	// 메시지 패널을 스크롤 패널에 추가
@@ -164,7 +162,6 @@ public class ServerMain {
 					e2.printStackTrace();
 				}
 			}
-
 			
 		});
 		btnSend.setBounds(275, 10, 91, 33);
@@ -177,7 +174,6 @@ public class ServerMain {
 		lowerPanel.setLayout(new BorderLayout(0, 0));
 		
 		messagePanel = new JPanel();
-//		messagePanel.setBackground(new Color(128, 255, 128));
 		messagePanel.setLayout(new BoxLayout(messagePanel, BoxLayout.Y_AXIS));
 		
 		JScrollPane scrollPane = new JScrollPane(messagePanel);
