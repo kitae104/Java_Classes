@@ -1,4 +1,4 @@
-package part2.basic;
+package part2.frame;
 
 import javax.swing.JFrame;
 

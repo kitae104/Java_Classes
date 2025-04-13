@@ -1,4 +1,4 @@
-package swing.builder.components;
+package part2.components;
 
 import java.awt.EventQueue;
 

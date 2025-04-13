@@ -1,4 +1,4 @@
-package swing.builder.components;
+package part2.components;
 
 import java.awt.EventQueue;
 
@@ -178,7 +178,7 @@ public class Calc {
 		btnNewButton_17.setBounds(377, 194, 63, 106);
 		frame.getContentPane().add(btnNewButton_17);
 		
-		JLabel lblNewLabel = new JLabel("김재현의 계산기");
+		JLabel lblNewLabel = new JLabel("김기태의 계산기");
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(12, 324, 428, 51);

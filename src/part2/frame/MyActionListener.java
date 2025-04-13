@@ -1,4 +1,4 @@
-package part2.basic;
+package part2.frame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
