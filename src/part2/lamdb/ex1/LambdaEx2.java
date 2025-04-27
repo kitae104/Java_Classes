@@ -4,7 +4,6 @@ public class LambdaEx2 {
 
 	public static void main(String[] args) {
 		MyFunction f = new MyFunction() {
-			
 			@Override
 			public int myMax(int a, int b) {
 				return a > b ? a : b;
