@@ -1,6 +1,5 @@
-package toc.y2025.classes.ex1;
 
-import io.console.SystemOut;
+import toc.y2025.classes.ex1.Book;
 
 public class Main {
     public static void main(String[] args) {

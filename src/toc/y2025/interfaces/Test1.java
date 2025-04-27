@@ -1,7 +1,5 @@
 package toc.y2025.interfaces;
 
-import toc.y2025.classes.ex4.Student;
-
 class Person {
     String name;
     int age;

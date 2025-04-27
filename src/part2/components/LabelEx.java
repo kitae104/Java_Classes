@@ -61,7 +61,7 @@ public class LabelEx extends JFrame
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setBounds(0, 35, 400, 400);
-		lblNewLabel_1.setIcon(new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\images\\beauty.jpg"));
+		lblNewLabel_1.setIcon(new ImageIcon(LabelEx.class.getResource("/part2/images/beauty.jpg")));
 		contentPane.add(lblNewLabel_1);
 		
 		JButton btnNewButton = new JButton("보고싶으면 전화하세요");

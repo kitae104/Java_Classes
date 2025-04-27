@@ -22,14 +22,13 @@ public class CheckBoxEvent extends JFrame
 	private JPanel contentPane;
 	private int sum;
 	private JLabel lblResult;
-	private JLabel lblImage;
 	private final ButtonGroup buttonGroup = new ButtonGroup();
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	
 	ImageIcon [] image = { 
-			new ImageIcon("images/apple.jpg"), 
-			new ImageIcon("images/pear.jpg"),
-			new ImageIcon("images/cherry.jpg")};
+			new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\src\\part2\\images\\apple.jpg"), 
+			new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\src\\part2\\images\\pear.jpg"),
+			new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\src\\part2\\images\\cherry.jpg")};
 	
 	/**
 	 * Launch the application.
@@ -131,57 +130,29 @@ public class CheckBoxEvent extends JFrame
 		
 		
 		JRadioButton rdbtnMan = new JRadioButton("남자");
+		rdbtnMan.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					lblResult.setText("남자 선택");
+				} 
+			}
+		});
 		rdbtnMan.setSelected(true);
 		buttonGroup.add(rdbtnMan);
 		rdbtnMan.setBounds(22, 204, 113, 23);
 		contentPane.add(rdbtnMan);
 		
 		JRadioButton rdbtnWoman = new JRadioButton("여자");
+		rdbtnWoman.addItemListener(new ItemListener() {
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					lblResult.setText("여자 선택");
+				} 
+			}
+		});
 		buttonGroup.add(rdbtnWoman);
 		rdbtnWoman.setBounds(163, 204, 113, 23);
 		contentPane.add(rdbtnWoman);
-		
-		lblImage = new JLabel("");
-		lblImage.setIcon(new ImageIcon(CheckBoxEvent.class.getResource("/swing/builder/img/apple.jpg")));
-		lblImage.setBounds(152, 309, 124, 165);
-		contentPane.add(lblImage);
-		
-		JRadioButton rdbtnNewRadioButton = new JRadioButton("사과");
-		rdbtnNewRadioButton.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED) {
-					lblImage.setIcon(image[0]);
-				}
-			}
-		});
-		rdbtnNewRadioButton.setSelected(true);
-		buttonGroup_1.add(rdbtnNewRadioButton);
-		rdbtnNewRadioButton.setBounds(22, 259, 113, 23);
-		contentPane.add(rdbtnNewRadioButton);
-		
-		JRadioButton rdbtnQo = new JRadioButton("배");
-		rdbtnQo.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED) {
-					lblImage.setIcon(image[1]);
-				}
-			}
-		});
-		buttonGroup_1.add(rdbtnQo);
-		rdbtnQo.setBounds(163, 259, 113, 23);
-		contentPane.add(rdbtnQo);
-		
-		JRadioButton rdbtnNewRadioButton_1_1 = new JRadioButton("체리");
-		rdbtnNewRadioButton_1_1.addItemListener(new ItemListener() {
-			public void itemStateChanged(ItemEvent e) {
-				if(e.getStateChange() == ItemEvent.SELECTED) {
-					lblImage.setIcon(image[2]);
-				}
-			}
-		});
-		buttonGroup_1.add(rdbtnNewRadioButton_1_1);
-		rdbtnNewRadioButton_1_1.setBounds(298, 259, 113, 23);
-		contentPane.add(rdbtnNewRadioButton_1_1);
 		
 		
 	}
