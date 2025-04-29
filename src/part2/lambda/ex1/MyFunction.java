@@ -1,4 +1,4 @@
-package part2.lamdb.ex1;
+package part2.lambda.ex1;
 
 // 함수형 인터페이스 정의
 @FunctionalInterface

@@ -1,4 +1,4 @@
-package part2.lamdb.ex2;
+package part2.lambda.ex2;
 
 @FunctionalInterface
 interface FuncInter1{

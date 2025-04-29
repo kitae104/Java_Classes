@@ -1,4 +1,4 @@
-package part2.lamdb.ex1;
+package part2.lambda.ex1;
 
 import java.util.ArrayList;
 import java.util.List;
