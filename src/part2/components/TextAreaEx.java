@@ -35,7 +35,7 @@ public class TextAreaEx extends JFrame
 			{
 				try
 				{
-					TextAreaEx frame = new TextAreaEx();
+					TextAreaEx frame = new TextAreaEx("타이틀");
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e)
@@ -49,9 +49,9 @@ public class TextAreaEx extends JFrame
 	/**
 	 * Create the frame.
 	 */
-	public TextAreaEx()
+	public TextAreaEx(String title)
 	{
-		setTitle("텍스트 영역 만들기");
+		setTitle(title);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 569);
 		contentPane = new JPanel();
