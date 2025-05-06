@@ -1,4 +1,4 @@
-package part2.lambda.ex2;
+package part2.lambda.ex3;
 
 import java.util.function.Function;
 

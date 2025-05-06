@@ -1,4 +1,4 @@
-package part2.lambda.ex1;
+package part2.lambda.ex2;
 
 public class LambdaEx2 {
 
