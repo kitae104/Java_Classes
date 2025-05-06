@@ -134,7 +134,7 @@ public class MyTextEditor {
 				newFunc();
 			}
 		});
-		btnNew.setIcon(new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\images\\new.png"));
+		btnNew.setIcon(new ImageIcon(MyTextEditor.class.getResource("/part2/images/new.png")));
 		toolBar.add(btnNew);
 		
 		JButton btnOpen = new JButton("");
@@ -153,6 +153,14 @@ public class MyTextEditor {
 		});
 		btnExit.setIcon(new ImageIcon("D:\\Github\\Java_WS\\Java_Classes\\images\\exit.png"));
 		toolBar.add(btnExit);
+		
+		JButton btnNewButton = new JButton("");
+		btnNewButton.setIcon(new ImageIcon(MyTextEditor.class.getResource("/part2/images/run.png")));
+		toolBar.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("");
+		btnNewButton_1.setIcon(new ImageIcon(MyTextEditor.class.getResource("/part2/images/compile.png")));
+		toolBar.add(btnNewButton_1);
 	}
 
 	private void exitFunc() {
