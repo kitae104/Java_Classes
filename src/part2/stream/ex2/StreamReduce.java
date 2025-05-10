@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
+// Reduce는 스트림의 요소(여러개의 입력)를 하나로 합치는 연산을 수행.
 public class StreamReduce {
   public static void main(String[] args) {
     // 1부터 10까지의 합을 구하는 방법

@@ -8,10 +8,12 @@ public class LottoArray {
     System.out.print("몇 개를 구매 할건가요? ");
     int num = sc.nextInt();
 
+    // 원하는 숫자 만큼 로또 번호를 저장할 배열 생성
     for (int i = 0; i < num; i++) {
       System.out.print("로또 번호 " + (i + 1) + ": ");
       int[] lotto = new int[6];
 
+      // 로또 번호 생성 및 중복 체크
       for (int j = 0; j < lotto.length; j++) {
         int rand = (int) (Math.random() * 45) + 1; // 1~45
         lotto[j] = rand;
@@ -25,7 +27,7 @@ public class LottoArray {
         }
       }
 
-      // 선택 정렬
+      // 선택 정렬(오름차순)
       for (int j = 0; j < lotto.length; j++) {
         for (int k = j+1; k < lotto.length; k++) {
           if (lotto[j] > lotto[k]) {
