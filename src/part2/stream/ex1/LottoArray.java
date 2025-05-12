@@ -29,7 +29,7 @@ public class LottoArray {
 
       // 선택 정렬(오름차순)
       for (int j = 0; j < lotto.length; j++) {
-        for (int k = j+1; k < lotto.length; k++) {
+        for (int k = j+1; k < lotto.length; k++) {  // j+1부터 시작 해야 함
           if (lotto[j] > lotto[k]) {
             int temp = lotto[j];
             lotto[j] = lotto[k];
