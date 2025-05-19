@@ -14,12 +14,12 @@ public class JDBC_Test {
 		
 		try {
 			// 1. 오라클 드라이버 설치 
-			Class.forName("oracle.jdbc.driver.OracleDriver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			// 2. 드라이버 메니저 연결 
-			Connection conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@127.0.0.1:1521:XE", 
-					"temp", "1234");
+			// 2. 드라이버 메니저 연결  
+			Connection conn = DriverManager.getConnection( 
+					"jdbc:mysql://localhost:3306/jpastudy", 
+					"root", "1111");
 			
 			Statement stmt = conn.createStatement();
 			
