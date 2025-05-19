@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 
 import java.awt.Font;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
@@ -122,24 +123,42 @@ public class UserShow {
 	private void loadTableData() {
         try {
             // 컬럼 설정 (예: id, name, email)
-            String[] columnNames = {"ID", "이름", "학과", "학번", "학년", "학점", "성별"};
-            tableModel.setColumnIdentifiers(columnNames);
-            tableModel.setRowCount(0); // 기존 데이터 삭제
+//            String[] columnNames = {"ID", "이름", "학과", "학번", "학년", "학점", "성별"};
+//            tableModel.setColumnIdentifiers(columnNames);
+//            tableModel.setRowCount(0); // 기존 데이터 삭제
 
             String sql = "SELECT id, name, dept, code, grade, score, gender FROM member ORDER BY id";
             ResultSet rs = DB.getResultSet(sql);
 
-            while (rs != null && rs.next()) {
-                Object[] rowData = {
-                        rs.getInt("id"),
-                        rs.getString("name"),
-                        rs.getString("dept"),
-                        rs.getString("code"),
-                        rs.getInt("grade"),
-                        rs.getDouble("score"),
-                        rs.getString("gender")
-                };
-                tableModel.addRow(rowData);
+            if(rs != null) {
+            	ResultSetMetaData metaData = rs.getMetaData();	// 메타데이터 가져오기
+                int columnCount = metaData.getColumnCount();	// 컬럼 개수 가져오기
+                
+                // 1. 메타데이터로부터 컬럼 이름 추출
+                String[] columnNames = new String[columnCount];
+                for (int i = 0; i < columnCount; i++) {
+					columnNames[i] = metaData.getColumnName(i + 1);
+				}
+                
+                // 2. 테이블 모델에 컬럼 이름 설정
+				tableModel.setColumnIdentifiers(columnNames);
+				
+				// 3. 기존 데이터 삭제
+				tableModel.setRowCount(0);
+				
+				while (rs.next()) {
+					Object[] rowData = {
+							rs.getInt("id"),
+							rs.getString("name"),
+							rs.getString("dept"),
+							rs.getString("code"),
+							rs.getInt("grade"),
+							rs.getDouble("score"),
+							rs.getString("gender")
+					};
+					tableModel.addRow(rowData);
+            }
+            
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(frame, "데이터 로딩 중 오류 발생", "에러", JOptionPane.ERROR_MESSAGE);
