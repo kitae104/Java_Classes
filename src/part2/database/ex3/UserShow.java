@@ -25,6 +25,8 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UserShow {
 
@@ -34,6 +36,7 @@ public class UserShow {
 	private final ButtonGroup buttonGroup_1 = new ButtonGroup();
 	private JTable table;
 	private DefaultTableModel tableModel;
+	private JComboBox cbSelect;
 
 	
 	
@@ -94,20 +97,28 @@ public class UserShow {
 		lblNewLabel_1_7.setBounds(12, 10, 153, 25);
 		panel_1.add(lblNewLabel_1_7);
 		
-		JLabel lblNewLabel_1_7_1 = new JLabel("학번 검색");
-		lblNewLabel_1_7_1.setFont(new Font("D2Coding", Font.BOLD, 16));
-		lblNewLabel_1_7_1.setBounds(12, 45, 91, 25);
-		panel_1.add(lblNewLabel_1_7_1);
-		
 		tfSearch = new JTextField();
 		tfSearch.setFont(new Font("D2Coding", Font.BOLD, 16));
 		tfSearch.setColumns(10);
-		tfSearch.setBounds(100, 46, 234, 25);
+		tfSearch.setBounds(100, 45, 252, 25);
 		panel_1.add(tfSearch);
 		
 		JButton btnSearch = new JButton("검색");
+		btnSearch.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String selectItem = cbSelect.getSelectedItem().toString();
+				String searchText = tfSearch.getText();
+				System.out.println(selectItem + " : " + searchText);
+				
+				String sql = "SELECT id, name, dept, code, grade, score, gender FROM member "
+						+ "WHERE " + selectItem + " LIKE '%" + searchText + "%' "
+						+ "ORDER BY id";
+				loadTableData(sql);
+				
+			}
+		});
 		btnSearch.setFont(new Font("D2Coding", Font.BOLD, 16));
-		btnSearch.setBounds(346, 41, 121, 35);
+		btnSearch.setBounds(364, 45, 93, 25);
 		panel_1.add(btnSearch);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -117,17 +128,24 @@ public class UserShow {
 		tableModel = new DefaultTableModel();
         table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
-		loadTableData(); // 최초 로딩
+		
+		cbSelect = new JComboBox();
+		cbSelect.setModel(new DefaultComboBoxModel(new String[] {"이름", "학과", "학번", "학년"}));
+		cbSelect.setBounds(12, 47, 76, 23);
+		panel_1.add(cbSelect);
+		
+		String sql = "SELECT id, name, dept, code, grade, score, gender FROM member ORDER BY id";
+		loadTableData(sql); // 최초 로딩
 	}
 	
-	private void loadTableData() {
+	private void loadTableData(String sql) {
         try {
             // 컬럼 설정 (예: id, name, email)
 //            String[] columnNames = {"ID", "이름", "학과", "학번", "학년", "학점", "성별"};
 //            tableModel.setColumnIdentifiers(columnNames);
 //            tableModel.setRowCount(0); // 기존 데이터 삭제
 
-            String sql = "SELECT id, name, dept, code, grade, score, gender FROM member ORDER BY id";
+            
             ResultSet rs = DB.getResultSet(sql);
 
             if(rs != null) {

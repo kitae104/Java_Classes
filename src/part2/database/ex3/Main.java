@@ -46,12 +46,11 @@ public class Main extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnNewButton = new JButton("데이터 입력");
-		btnNewButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnNewButton.addActionListener((e) -> {
 				UserInfo userInfo = new UserInfo();
 				userInfo.getFrame().setVisible(true);				
 			}
-		});
+		);
 		btnNewButton.setBounds(36, 34, 253, 120);
 		contentPane.add(btnNewButton);
 		
