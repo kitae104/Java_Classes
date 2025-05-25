@@ -16,6 +16,8 @@ import java.sql.ResultSetMetaData;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumnModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.JComboBox;
 import javax.swing.JRadioButton;
 import javax.swing.ButtonGroup;
@@ -129,8 +131,13 @@ public class UserShow {
         table = new JTable(tableModel);
 		scrollPane.setViewportView(table);
 		
+		// 소팅 기능 추가 
+		TableRowSorter<DefaultTableModel> sorter = new TableRowSorter<>(tableModel);
+		table.setRowSorter(sorter);
+		
+		
 		cbSelect = new JComboBox();
-		cbSelect.setModel(new DefaultComboBoxModel(new String[] {"이름", "학과", "학번", "학년"}));
+		cbSelect.setModel(new DefaultComboBoxModel(new String[] {"id", "name", "dept", "code", "grade"}));
 		cbSelect.setBounds(12, 47, 76, 23);
 		panel_1.add(cbSelect);
 		
@@ -145,6 +152,7 @@ public class UserShow {
 //            tableModel.setColumnIdentifiers(columnNames);
 //            tableModel.setRowCount(0); // 기존 데이터 삭제
 
+        	
             
             ResultSet rs = DB.getResultSet(sql);
 
@@ -154,8 +162,10 @@ public class UserShow {
                 
                 // 1. 메타데이터로부터 컬럼 이름 추출
                 String[] columnNames = new String[columnCount];
+                
+                
                 for (int i = 0; i < columnCount; i++) {
-					columnNames[i] = metaData.getColumnName(i + 1);
+					columnNames[i] = metaData.getColumnName(i + 1);					
 				}
                 
                 // 2. 테이블 모델에 컬럼 이름 설정
