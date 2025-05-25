@@ -15,6 +15,8 @@ import java.sql.ResultSetMetaData;
 
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
@@ -143,8 +145,39 @@ public class UserShow {
 		
 		String sql = "SELECT id, name, dept, code, grade, score, gender FROM member ORDER BY id";
 		loadTableData(sql); // 최초 로딩
+		
+		setTableColumnWidth();
+		setTableColumnAlignment();
 	}
 	
+	private void setTableColumnAlignment() {
+		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+
+        // ✅ 모든 컬럼에 가운데 정렬 적용
+        for (int i = 0; i < table.getColumnCount(); i++) {
+            table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
+        }
+		
+	}
+
+	/**
+	 * 테이블 컬럼 너비 설정
+	 */
+	private void setTableColumnWidth() {
+		TableColumnModel columnModel = table.getColumnModel();
+		
+		// 각 컬럼의 너비 설정
+		columnModel.getColumn(0).setPreferredWidth(50); // ID
+		columnModel.getColumn(1).setPreferredWidth(100); // 이름
+		columnModel.getColumn(2).setPreferredWidth(100); // 학과
+		columnModel.getColumn(3).setPreferredWidth(80); // 학번
+		columnModel.getColumn(4).setPreferredWidth(50); // 학년
+		columnModel.getColumn(5).setPreferredWidth(70); // 학점
+		columnModel.getColumn(6).setPreferredWidth(50); // 성별
+		
+	}
+
 	private void loadTableData(String sql) {
         try {
             // 컬럼 설정 (예: id, name, email)
