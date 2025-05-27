@@ -1,4 +1,4 @@
-package part2.chat;
+package part2.chat.ex2;
 
 import java.awt.EventQueue;
 
@@ -17,6 +17,15 @@ import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JTextArea;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class ServerChat {
@@ -24,6 +33,9 @@ public class ServerChat {
 	private JFrame frame;
 	private JTextField tfInput;
 	private JTextArea taChat;
+	private BufferedReader in;
+	private BufferedWriter out;
+	private ArrayList<ServereThread> threadList;
 		
 	/**
 	 * Launch the application.
@@ -34,6 +46,10 @@ public class ServerChat {
 				try {
 					ServerChat window = new ServerChat();
 					window.frame.setVisible(true);
+					
+					// 백그라운드 스레드에서 실행하기
+					new Thread(() -> window.runServer()).start();
+					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -101,16 +117,47 @@ public class ServerChat {
 		
 		JScrollPane sp = new JScrollPane(taChat);
 		
-		frame.getContentPane().add(sp, BorderLayout.CENTER);
+		frame.getContentPane().add(sp, BorderLayout.CENTER);		
 	}
 	
 	private void typeMsg() {		
 		
-		String input = tfInput.getText();
+		try {
+			String output = tfInput.getText();
+			out.write(output + "\n");
+			out.flush();
+			
+			taChat.append("[서버] : " + output + "\n");
+			tfInput.setText("");
+			tfInput.requestFocus();		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void runServer() {
+		ServerSocket serverSocket = null;
 		
-		taChat.append("[msg] : " + input + "\n");
-		tfInput.setText("");
-		tfInput.requestFocus();		
+		threadList = new ArrayList<ServereThread>();
+		
+		try {
+			serverSocket = new ServerSocket(9999);
+			taChat.append("서버가 시작되었습니다.\n");
+			
+			while(true) {
+				Socket socket = serverSocket.accept();
+				taChat.append("연결 되었습니다.\n");
+				ServereThread st = new ServereThread(socket, threadList);
+				threadList.add(st);
+				st.start();
+			}
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
 	}
 
 }

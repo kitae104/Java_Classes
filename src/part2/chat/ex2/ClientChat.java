@@ -1,30 +1,35 @@
-package part2.chat;
-
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+package part2.chat.ex2;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-
-
+import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import javax.swing.JButton;
-import javax.swing.JTextArea;
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
+import java.net.UnknownHostException;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 public class ClientChat {
 
 	private JFrame frame;
 	private JTextField tfInput;
 	private JTextArea taChat;
-	
+	private BufferedReader in = null;
+	private BufferedWriter out = null;
 
 	/**
 	 * Launch the application.
@@ -35,6 +40,9 @@ public class ClientChat {
 				try {
 					ClientChat window = new ClientChat();
 					window.frame.setVisible(true);
+					
+					// 백그라운드 스레드에서 실행하기
+					new Thread(() -> window.runClient()).start();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -102,16 +110,46 @@ public class ClientChat {
 		
 		JScrollPane sp = new JScrollPane(taChat);
 		
-		frame.getContentPane().add(sp, BorderLayout.CENTER);
+		frame.getContentPane().add(sp, BorderLayout.CENTER);		
+		
 	}
 	
-	private void typeMsg() {		
+	private void runClient() {
+		Socket socket = null;
 		
-		String input = tfInput.getText();
 		
-		taChat.append("[msg] : " + input + "\n");
-		tfInput.setText("");
-		tfInput.requestFocus();		
+		try {
+			socket = new Socket("localhost", 9999);
+			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+			out = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+			
+			String inMsg = null;
+			
+			while(true) {
+				inMsg = in.readLine();
+				taChat.append("[서버] : " + inMsg + "\n");
+			}
+			
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}		
+	}
+
+	private void typeMsg() {				
+		try {
+			String output = tfInput.getText();
+			out.write(output + "\n");
+			out.flush();
+			
+//			taChat.append("[클라이언트] : " + output + "\n");
+			tfInput.setText("");
+			tfInput.requestFocus();		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
