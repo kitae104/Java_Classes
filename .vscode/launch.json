@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "LambdaEx2",
+            "request": "launch",
+            "mainClass": "lambda.basic.LambdaEx2",
+            "projectName": "Java_Classes"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
